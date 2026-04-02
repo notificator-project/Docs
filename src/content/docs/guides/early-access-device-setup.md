@@ -9,9 +9,23 @@ Use this guide to connect and configure the physical Early Access device in the 
 
 - You are signed in to the mobile app.
 - You have at least one active API key of type WordPress or Internal.
-- Your device firmware is provisioned and reachable over Wi-Fi/MQTT.
+- Your device is powered on and in setup mode.
 
-## 1. Add or open the device
+## 1. Connect device to Wi-Fi (ESP WiFiManager)
+
+If this is the first boot (or after a Wi-Fi reset), the device opens an ESP WiFiManager portal.
+
+1. Power on the device and wait 10-30 seconds.
+2. On your phone, open Wi-Fi settings.
+3. Connect to the device hotspot (usually named `Notificator-Setup` or `ESP32-Setup`).
+4. If the captive portal does not open automatically, open a browser and go to `192.168.4.1`.
+5. In the WiFiManager page, select your home/office Wi-Fi network.
+6. Enter the Wi-Fi password and save.
+7. Wait for the device to restart and connect.
+
+After successful connection, the temporary setup hotspot disappears and the device becomes reachable on your normal network.
+
+## 2. Add or open the device
 
 In the mobile app:
 
@@ -22,7 +36,7 @@ In the mobile app:
 
 Save the device.
 
-## 2. Configure idle theme
+## 3. Configure idle theme
 
 In device settings, choose one of:
 
@@ -35,7 +49,7 @@ Weather & Clock alternates on-device every 2.5 seconds:
 - 2.5s clock
 - 2.5s weather
 
-## 3. Configure weather (optional)
+## 4. Configure weather (optional)
 
 If you use Weather or Weather & Clock:
 
@@ -78,7 +92,7 @@ Tips:
 - Use `.` as decimal separator.
 - Paste both values together in app settings (lat and lon).
 
-## 4. Send settings to device
+## 5. Send settings to device
 
 When you save, the app sends device commands to apply:
 
@@ -87,7 +101,7 @@ When you save, the app sends device commands to apply:
 
 If save succeeds but device screen does not change immediately, verify the device is online and not paused.
 
-## 5. Verify status
+## 6. Verify status
 
 On the Devices screen, check:
 
@@ -98,6 +112,9 @@ You can also use the device actions to clear messages or refresh firmware status
 
 ## Troubleshooting
 
+- WiFiManager page does not open: after joining the setup hotspot, manually visit `http://192.168.4.1`.
+- Device hotspot not visible: power-cycle the device and wait up to 30 seconds.
+- Wrong Wi-Fi credentials: reboot to setup mode and re-enter credentials in WiFiManager.
 - Command failed: ensure your account has an active WordPress/Internal API key.
 - No device response: verify device ID matches firmware device ID exactly.
 - Weather not showing: verify Wi-Fi connectivity and timezone/coordinates.
