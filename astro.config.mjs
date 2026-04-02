@@ -13,6 +13,7 @@ export default defineConfig({
 				{
 					label: 'User Guide (No Code)',
 					items: [
+							{ label: 'Welcome', slug: 'guides/welcome' },
 						{ label: 'Complete Workflow', slug: 'guides/workflow-overview' },
 						{ label: 'Create Account', slug: 'guides/account-creation' },
 						{ label: 'Create API Key (Mobile)', slug: 'guides/mobile-api-key-creation' },

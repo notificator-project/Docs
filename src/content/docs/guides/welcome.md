@@ -1,0 +1,39 @@
+---
+title: Welcome to Notificator Docs
+description: Start here to understand what Notificator is, who these docs are for, and where to go next.
+---
+
+Welcome to the Notificator Project documentation.
+
+This docs site helps both non-technical users and developers complete setup and send notifications successfully.
+
+## What You Can Do Here
+
+- Set up an account and API key
+- Connect your source system (for example WordPress)
+- Configure app behavior and notification routing
+- Implement API calls with tested request examples
+
+## Choose Your Path
+
+### I am a non-technical user
+
+1. Read [Complete Workflow](/guides/workflow-overview/)
+2. Follow [Create Account](/guides/account-creation/)
+3. Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
+4. Finish [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+
+### I am a developer
+
+1. Start with [Quick Start](/guides/quick-start/)
+2. Use [Code Samples](/guides/code-samples/)
+3. Review [Public Notify API](/reference/public-notify/)
+4. Explore [Copy-Paste Snippets](/guides/copy-paste-snippets/)
+
+## Core Endpoint
+
+`POST https://public-api.notificator-project.com/.netlify/functions/public-notify`
+
+## Need Full Technical Overview?
+
+See the [Developer Overview](/) page for endpoint behavior, OpenAPI links, and architecture-level context.
