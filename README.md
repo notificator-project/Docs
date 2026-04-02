@@ -1,13 +1,27 @@
 # Notificator Docs Contributor Guide
 
-This directory contains the Astro Starlight documentation site used for product onboarding, API usage, and developer integration.
+This folder contains the Astro + Starlight documentation site for the Notificator Project.
+It includes end-user guides, developer integration guides, and API reference content.
+
+## Tech Stack
+
+- Astro 6
+- Starlight
+- Markdown and MDX content collections
+
+## Attribution
+
+This documentation site is built with the Astro Starlight docs framework.
+
+- Astro: https://astro.build/
+- Starlight: https://starlight.astro.build/
 
 ## Prerequisites
 
-- Node.js `>=22.12.0` (Astro requirement)
+- Node.js 22.12.0 or newer
 - npm
 
-## Local Setup
+## Quick Start
 
 ```bash
 cd docs
@@ -15,69 +29,60 @@ npm install
 npm run dev
 ```
 
-Local URL: `http://localhost:4321`
+Local site: http://localhost:4321
 
-## Writing and Updating Docs
-
-Main content lives in `src/content/docs/`:
-
-- `index.mdx` landing page
-- `guides/` task and workflow docs
-- `reference/` API/spec reference docs
-
-When adding a new page:
-
-1. Create a new `.md` or `.mdx` file under `src/content/docs/guides/` or `src/content/docs/reference/`.
-2. Add frontmatter (`title`, `description`).
-3. Add the page to sidebar in `astro.config.mjs`.
-4. Run local preview and verify links.
-
-## Contribution Checklist
-
-Before opening a PR:
-
-1. Validate commands and URLs in all code blocks.
-2. Keep examples aligned with production domain (`public-api.notificator-project.com`).
-3. Ensure user-facing and developer-facing docs stay separated by audience.
-4. Build locally to catch content/config issues.
-
-## Build and Preview
+## Available Commands
 
 ```bash
-cd docs
-npm run build
-npm run preview
+npm run dev      # Start local dev server
+npm run build    # Create production build
+npm run preview  # Preview production build locally
 ```
 
-Build output: `docs/dist`
+## Project Structure
 
-## Netlify Deployment (Docs Site)
+- src/content/docs/index.mdx: Developer overview landing page
+- src/content/docs/guides/: Task-based documentation for users and developers
+- src/content/docs/reference/: API reference pages
+- astro.config.mjs: Starlight config, including sidebar navigation
 
-Use a dedicated Netlify site for docs.
+## Authoring Workflow
 
-- Base directory: `docs`
-- Build command: `npm run build`
-- Publish directory: `dist`
+1. Add or edit a page in src/content/docs/guides/ or src/content/docs/reference/.
+2. Include frontmatter at minimum:
 
-## Optional: Push Docs to Separate Repository
-
-If docs should live in a separate repo as well:
-
-```bash
-# From project root
-git remote add docs-origin <DOCS_REPO_URL>
-git subtree push --prefix docs docs-origin main
+```md
+---
+title: Page Title
+description: One-sentence summary shown in previews/search
+---
 ```
 
-Notes:
+3. If the page is new, register it in the sidebar in astro.config.mjs.
+4. Run npm run dev and verify rendering, links, headings, and code blocks.
+5. Run npm run build before opening a PR.
 
-- This does not modify default `origin`.
-- Use your docs repo default branch if not `main`.
-- Repeat subtree push whenever docs changes should be published there.
+## Writing Standards
+
+- Keep guides action-oriented and step-by-step.
+- Prefer short sections with explicit outcomes.
+- Match all API examples to the production API domain: public-api.notificator-project.com.
+- Keep user guide content and developer guide content clearly separated.
+- Validate every command and request payload you document.
+
+## Definition of Done (Docs Changes)
+
+Before opening a PR, confirm all items below:
+
+1. New or changed pages are linked from the sidebar when applicable.
+2. Commands and URLs were executed or validated.
+3. Internal links are not broken.
+4. Build succeeds with npm run build.
+5. Language is concise, consistent, and audience-appropriate.
 
 ## Troubleshooting
 
-- `Node.js ... is not supported by Astro`: upgrade to Node `>=22.12.0`.
-- Sidebar item missing: confirm `astro.config.mjs` includes the page slug.
-- Broken links after rename: update all internal links under `src/content/docs/`.
-- Stale generated content: clean build artifacts and rerun `npm run build`.
+- Astro Node version error: upgrade Node to 22.12.0 or newer.
+- Page does not appear in navigation: verify slug entry in astro.config.mjs sidebar.
+- Broken links after renaming files: search and update links under src/content/docs/.
+- Unexpected stale output: remove old build artifacts and run npm run build again.
