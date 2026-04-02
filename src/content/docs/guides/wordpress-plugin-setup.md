@@ -7,7 +7,7 @@ description: Configure the WordPress plugin with your endpoint, API key, and mon
 
 1. Upload plugin files to your WordPress plugins directory.
 2. Activate the plugin from WordPress Admin.
-3. Open Settings -> Uptime Monitor.
+3. Open Settings -> Notificator Companion.
 
 ## Configure connection
 
