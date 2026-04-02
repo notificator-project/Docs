@@ -1,4 +1,4 @@
-# Notificator Docs Contributor Guide
+# Notificator Project Docs Contributor Guide
 
 This folder contains the Astro + Starlight documentation site for the Notificator Project.
 It includes end-user guides, developer integration guides, and API reference content.
