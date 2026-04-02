@@ -108,3 +108,18 @@ Recommended flow:
 - Page does not appear in navigation: verify slug entry in astro.config.mjs sidebar.
 - Broken links after renaming files: search and update links under src/content/docs/.
 - Unexpected stale output: remove old build artifacts and run npm run build again.
+
+## Attribution (Project Footer)
+
+- Hosted on Netlify.
+- Built with Astro.js.
+- Documentation UI powered by Starlight.
+- Content authored in Markdown/MDX.
+- Source and collaboration hosted on GitHub.
+
+Useful links:
+
+- Netlify: https://www.netlify.com/
+- Astro: https://astro.build/
+- Starlight: https://starlight.astro.build/
+- GitHub repo: https://github.com/notificator-project/Docs
