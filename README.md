@@ -1,5 +1,13 @@
 # Notificator Project Docs Contributor Guide
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/86d83d7a-a21f-45a2-8990-66f7c89cd154/deploy-status)](https://app.netlify.com/projects/notificator-project-docs/deploys)
+[![Last Commit](https://img.shields.io/github/last-commit/notificator-project/Docs)](https://github.com/notificator-project/Docs/commits/main)
+[![Open Issues](https://img.shields.io/github/issues/notificator-project/Docs)](https://github.com/notificator-project/Docs/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/notificator-project/Docs/pulls)
+[![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-ff5d01)](https://astro.build)
+[![Docs by Starlight](https://img.shields.io/badge/Docs-Starlight-4b7bec)](https://starlight.astro.build)
+[![Node](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933)](https://nodejs.org/)
+
 This folder contains the Astro + Starlight documentation site for the Notificator Project.
 It includes end-user guides, developer integration guides, and API reference content.
 
