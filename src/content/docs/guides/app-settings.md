@@ -26,8 +26,18 @@ Check these first:
 From Profile -> API Keys:
 
 - Create separate keys per integration.
+- Select key type when creating a key:
+	- `WordPress` for plugin/server workflow
+	- `Public API` for `public-notify`
+	- `Internal` for trusted backend automation
 - Rename keys with clear environment labels.
 - Revoke old or unused keys.
+
+Each active key card also shows:
+
+- Key type
+- Last used timestamp
+- Allowed domains count
 
 ## Home and UI preferences
 

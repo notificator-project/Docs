@@ -13,7 +13,7 @@ description: Configure the WordPress plugin with your endpoint, API key, and mon
 
 Fill these fields in plugin settings:
 
-- API Key: your `wpnotif_...` key
+- API Key: your `wpnotif_...` key of type `WordPress` (`wordpress_server`)
 - Monitoring Function URL: your deployed function URL
 
 Example function URL:
@@ -37,9 +37,12 @@ Save settings.
 2. Open mobile app and verify notification appears.
 3. Open details and check payload fields.
 
+The plugin signs requests automatically with timestamp/nonce headers. Keep server-side signature and nonce checks enabled in production.
+
 ## Troubleshooting
 
 - Invalid API key: recreate and copy fresh key.
+- Key type mismatch: ensure plugin key type is `wordpress_server` (not `public_client`).
 - No push in mobile: verify device push is enabled in app settings.
 - URL checks failing: test monitor URL manually and try GET method.
 

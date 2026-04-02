@@ -14,6 +14,12 @@ description: Send third-party notifications to user devices with push and MQTT d
 - Delivers via mobile push and optional MQTT.
 - Normalizes third-party data keys for app rendering.
 
+## Key type routing
+
+- `public_client` keys are for `public-notify`.
+- `wordpress_server` keys are for `wpnotif-api` (WordPress/plugin flow).
+- `internal_service` keys can be used on both.
+
 ## OpenAPI + Swagger
 
 - OpenAPI JSON: `https://public-api.notificator-project.com/.netlify/functions/public-notify?format=openapi`

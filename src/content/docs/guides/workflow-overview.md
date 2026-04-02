@@ -21,7 +21,10 @@ Create a dedicated API key for your WordPress/plugin integration.
 
 - Go to Profile -> API Keys.
 - Create a named key (for example: `wordpress-prod`).
+- Choose type `WordPress` (`wordpress_server`).
 - Copy and store the key securely.
+
+If you also use the public endpoint, create a second key with type `Public API` (`public_client`).
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
@@ -29,8 +32,8 @@ Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
 Install and configure the plugin with your function endpoint and API key.
 
-- Set function URL to your deployed endpoint.
-- Paste API key.
+- Set function URL to your deployed `wpnotif-api` endpoint.
+- Paste a `WordPress` key (`wordpress_server`).
 - Add monitors and run a test notification.
 
 Continue with [WordPress Plugin Setup](/guides/wordpress-plugin-setup/).
@@ -60,6 +63,8 @@ Continue with [App Settings Guide](/guides/app-settings/).
 ## Step 6: Validate external API flow
 
 Use OpenAPI and samples to test your public-notify payloads.
+
+- Use a `Public API` key (`public_client`) for `public-notify` requests.
 
 - [Quick Start](/guides/quick-start/)
 - [Code Samples](/guides/code-samples/)

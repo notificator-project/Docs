@@ -21,6 +21,11 @@ Provide one of:
 - `X-API-Key: wpnotif_...`
 - `X-WPNOTIF-Key: wpnotif_...`
 
+Key type policy:
+
+- Accepted: `public_client`, `internal_service`
+- Rejected: `wordpress_server`
+
 ## OpenAPI document
 
 `GET https://public-api.notificator-project.com/.netlify/functions/public-notify?format=openapi`
@@ -77,7 +82,7 @@ Data payload:
 ## Error responses
 
 - `400` invalid JSON
-- `401` invalid/missing key or policy restriction
+- `401` invalid/missing key, wrong key type, or policy restriction
 - `404` `deviceId` not found
 - `409` device inactive/paused
 - `502` MQTT publish failed
