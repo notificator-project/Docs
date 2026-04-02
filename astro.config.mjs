@@ -4,16 +4,13 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	redirects: {
-		'/': '/guides/welcome/',
-	},
 	integrations: [
 		starlight({
 			title: 'Notificator Project Docs',
 			description: 'Documentation for the public-notify endpoint, including auth, examples, and OpenAPI reference.',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/vagelisp/' }],
 			sidebar: [
-				{ label: 'Welcome', slug: 'guides/welcome' },
+				{ label: 'Welcome', slug: '' },
 				{
 					label: 'User Guide (No Code)',
 					items: [
