@@ -1,0 +1,35 @@
+---
+title: Notificator Project Public API
+description: Send third-party notifications to user devices with push and MQTT delivery.
+---
+
+## Endpoint
+
+`POST https://public-api.notificator-project.com/.netlify/functions/public-notify`
+
+## What this API does
+
+- Accepts authenticated requests from external systems.
+- Stores notifications securely for the user.
+- Delivers via mobile push and optional MQTT.
+- Normalizes third-party data keys for app rendering.
+
+## OpenAPI + Swagger
+
+- OpenAPI JSON: `https://public-api.notificator-project.com/.netlify/functions/public-notify?format=openapi`
+- Interactive Swagger page: `https://public-api.notificator-project.com/`
+
+## Full Product Workflow
+
+Follow the end-to-end onboarding path:
+
+1. [Create Account](/guides/account-creation/)
+2. [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
+3. [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+4. [App Settings Guide](/guides/app-settings/)
+
+## Start here
+
+1. Read [Quick Start](/guides/quick-start/).
+2. Copy snippets from [Code Samples](/guides/code-samples/).
+3. See full request/response details in [Public Notify API](/reference/public-notify/).
