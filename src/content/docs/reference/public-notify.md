@@ -52,6 +52,57 @@ Data payload:
 - `data` object
 - additional top-level keys are merged into `data`
 
+## Webhook compatibility
+
+`public-notify` accepts common webhook request formats out of the box:
+
+- `application/json`
+- `application/x-www-form-urlencoded`
+- `text/plain`
+
+Normalization behavior:
+
+- `subject` -> `title`
+- `description` or `text` -> `body`
+- `service` -> `source`
+- `payload` / `data` are auto-parsed when sent as JSON strings
+
+### Example: JSON webhook
+
+```bash
+curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+  -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "subject": "Build Failed",
+    "description": "CI pipeline failed on deploy.",
+    "service": "github_actions",
+    "severity": "error",
+    "payload": { "workflow": "deploy.yml", "branch": "main" }
+  }'
+```
+
+### Example: Form-encoded webhook
+
+```bash
+curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+  -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "subject=Disk Space Alert" \
+  --data-urlencode "description=Node reached 92% disk usage" \
+  --data-urlencode "service=infra_monitor" \
+  --data-urlencode "payload={\"host\":\"api-1\",\"disk\":92}"
+```
+
+### Example: Plain-text webhook
+
+```bash
+curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+  -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
+  -H "Content-Type: text/plain" \
+  --data "Payment provider timeout on checkout"
+```
+
 ## Successful response
 
 ```json
