@@ -82,6 +82,13 @@ Before opening a PR, confirm all items below:
 
 ## Contributing
 
+You can contribute in two simple ways:
+
+1. Open an issue for bugs, broken links, or unclear docs.
+2. Open a pull request if you already have a fix ready.
+
+Both options are welcome. If you are not sure where to start, open an issue first.
+
 Contributions are welcome through the docs repository:
 
 - Repo: https://github.com/notificator-project/Docs

@@ -37,6 +37,10 @@ export default defineConfig({
 					label: 'API Reference',
 					items: [{ label: 'Public Notify API', slug: 'reference/public-notify' }],
 				},
+				{
+					label: 'Contributing',
+					items: [{ label: 'Documentation', slug: 'guides/contributing' }],
+				},
 			],
 		}),
 	],
