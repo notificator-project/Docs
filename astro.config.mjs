@@ -21,6 +21,7 @@ export default defineConfig({
 						{ label: 'Create Account', slug: 'guides/account-creation' },
 						{ label: 'Create API Key (Mobile)', slug: 'guides/mobile-api-key-creation' },
 						{ label: 'WordPress Plugin Setup', slug: 'guides/wordpress-plugin-setup' },
+						{ label: 'Early Access Device Setup', slug: 'guides/early-access-device-setup' },
 						{ label: 'App Settings Guide', slug: 'guides/app-settings' },
 						{ label: 'Quick Start', slug: 'guides/quick-start' },
 					],

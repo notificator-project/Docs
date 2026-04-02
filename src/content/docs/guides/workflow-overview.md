@@ -60,6 +60,16 @@ Tune notifications, security, and home widgets from mobile settings.
 
 Continue with [App Settings Guide](/guides/app-settings/).
 
+## Step 5b: Configure Early Access device (optional)
+
+If you use the physical Early Access ESP32 device:
+
+- Add the device in mobile app Devices.
+- Set idle theme (Clock, Weather, or Weather & Clock).
+- Configure weather location/timezone as needed.
+
+Continue with [Early Access Device Setup](/guides/early-access-device-setup/).
+
 ## Step 6: Validate external API flow
 
 Use OpenAPI and samples to test your public-notify payloads.
