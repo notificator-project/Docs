@@ -80,6 +80,21 @@ Before opening a PR, confirm all items below:
 4. Build succeeds with npm run build.
 5. Language is concise, consistent, and audience-appropriate.
 
+## Contributing
+
+Contributions are welcome through the docs repository:
+
+- Repo: https://github.com/notificator-project/Docs
+- Open an issue: https://github.com/notificator-project/Docs/issues
+- Create a pull request: https://github.com/notificator-project/Docs/pulls
+
+Recommended flow:
+
+1. Fork the repository and create a branch for your docs change.
+2. Make your edits and validate locally with npm run dev.
+3. Run npm run build to verify the docs compile.
+4. Open a pull request with a clear summary and screenshots when UI/output changed.
+
 ## Troubleshooting
 
 - Astro Node version error: upgrade Node to 22.12.0 or newer.
