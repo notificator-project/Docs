@@ -11,6 +11,10 @@ Use one of the following:
 - `X-API-Key: wpnotif_...`
 - `X-WPNOTIF-Key: wpnotif_...`
 
+Use a key with type `public_client` (or `internal_service`).
+
+`wordpress_server` keys are rejected by `public-notify`.
+
 ## 2. Send a test request
 
 ```bash

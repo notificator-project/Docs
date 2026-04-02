@@ -3,6 +3,10 @@ title: Code Samples
 description: Ready-to-use examples for JavaScript, TypeScript, PHP, and Postman.
 ---
 
+Use a `public_client` API key for the `public-notify` endpoint shown below.
+
+`wordpress_server` keys are for `wpnotif-api` and will be rejected here.
+
 ## JavaScript (fetch)
 
 ```js

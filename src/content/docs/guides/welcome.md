@@ -36,4 +36,4 @@ This docs site helps both non-technical users and developers complete setup and 
 
 ## Need Full Technical Overview?
 
-See the [Developer Overview](/) page for endpoint behavior, OpenAPI links, and architecture-level context.
+Continue with [Quick Start](/guides/quick-start/), [Code Samples](/guides/code-samples/), and [Public Notify API](/reference/public-notify/) for endpoint behavior and implementation details.
