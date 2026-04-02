@@ -8,7 +8,7 @@
 [![Docs by Starlight](https://img.shields.io/badge/Docs-Starlight-4b7bec)](https://starlight.astro.build)
 [![Node](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933)](https://nodejs.org/)
 
-This folder contains the Astro + Starlight documentation site for the Notificator Project.
+This repository contains the Notificator Project documentation site.
 It includes end-user guides, developer integration guides, and API reference content.
 
 ## Tech Stack
