@@ -8,7 +8,7 @@ export default defineConfig({
 		starlight({
 			title: 'Notificator Project Docs',
 			description: 'Documentation for the public-notify endpoint, including auth, examples, and OpenAPI reference.',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/vagelisp/' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/notificator-project/' }],
 			sidebar: [
 				{ label: 'Welcome', slug: '' },
 				{
