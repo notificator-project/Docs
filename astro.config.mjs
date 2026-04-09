@@ -18,19 +18,18 @@ export default defineConfig({
 						{ label: 'Create Account', slug: 'guides/account-creation' },
 						{ label: 'Create API Key (Mobile)', slug: 'guides/mobile-api-key-creation' },
 						{ label: 'WordPress Plugin Setup', slug: 'guides/wordpress-plugin-setup' },
-						{ label: 'Early Access Device Setup', slug: 'guides/early-access-device-setup' },
 						{ label: 'App Settings Guide', slug: 'guides/app-settings' },
-						{ label: 'Quick Start', slug: 'guides/quick-start' },
+							{ label: 'Early Access Device Setup', slug: 'guides/early-access-device-setup' },
 					],
 				},
 				{
 					label: 'Developer Guide',
 					items: [
-						{ label: 'Overview', slug: '' },
+							{ label: 'Quick Start', slug: 'guides/quick-start' },
 						{ label: 'Code Samples', slug: 'guides/code-samples' },
 						{ label: 'Plugin Template Creation', slug: 'guides/plugin-template-creation' },
 						{ label: 'Plugin Hooks Notifications', slug: 'guides/plugin-hooks-notifications' },
-						{ label: 'Copy-Paste Snippets', slug: 'guides/copy-paste-snippets' },
+							{ label: 'Copy-Paste Snippets', slug: 'guides/copy-paste-snippets' },
 					],
 				},
 				{
