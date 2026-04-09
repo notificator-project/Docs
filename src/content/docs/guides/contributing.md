@@ -54,7 +54,7 @@ npm run build
 - Write concise, task-oriented instructions.
 - Keep user guides and developer guides clearly separated.
 - Use the production API domain in examples:
-  - public-api.notificator-project.com
+  - api.notificator-project.com
 - Validate commands and request payloads before publishing.
 
 ## Pull Request Checklist

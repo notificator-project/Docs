@@ -7,6 +7,11 @@ Welcome to the Notificator Project documentation.
 
 This docs site helps both non-technical users and developers complete setup and send notifications successfully.
 
+:::tip[Pick the right track]
+If you do not write code, follow **User Guide (No Code)** in the sidebar.
+If you build integrations, start in **Developer Guide**.
+:::
+
 ## What You Can Do Here
 
 - Set up an account and API key
@@ -23,6 +28,10 @@ This docs site helps both non-technical users and developers complete setup and 
 3. Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
 4. Finish [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
 
+:::note[No-code outcome]
+At the end of this path, your app and plugin are connected and notifications are delivered without writing custom code.
+:::
+
 ### I am a developer
 
 1. Start with [Quick Start](/guides/quick-start/)
@@ -30,10 +39,18 @@ This docs site helps both non-technical users and developers complete setup and 
 3. Review [Public Notify API](/reference/public-notify/)
 4. Explore [Copy-Paste Snippets](/guides/copy-paste-snippets/)
 
+:::tip[Developer shortcut]
+If you already have a `public_client` key, jump directly to [Quick Start](/guides/quick-start/).
+:::
+
 ## Core Endpoint
 
-`POST https://public-api.notificator-project.com/.netlify/functions/public-notify`
+`POST https://api.notificator-project.com`
 
 ## Need Full Technical Overview?
 
 Continue with [Quick Start](/guides/quick-start/), [Code Samples](/guides/code-samples/), and [Public Notify API](/reference/public-notify/) for endpoint behavior and implementation details.
+
+:::caution[Environment mismatch]
+Always verify that API keys, endpoint URLs, and expected payload fields match your target environment before testing.
+:::

@@ -3,6 +3,10 @@ title: Quick Start
 description: Send your first third-party notification in under 2 minutes.
 ---
 
+:::tip[Before you start]
+Have a valid API key ready and confirm it is type `public_client` (or `internal_service`).
+:::
+
 ## 1. Pick your auth header
 
 Use one of the following:
@@ -15,10 +19,14 @@ Use a key with type `public_client` (or `internal_service`).
 
 `wordpress_server` keys are rejected by `public-notify`.
 
+:::caution[Most common error]
+If you send a `wordpress_server` key to `public-notify`, authentication fails even if the key format is correct.
+:::
+
 ## 2. Send a test request
 
 ```bash
-curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+curl -X POST "https://api.notificator-project.com" \
   -H "Authorization: Bearer wpnotif_YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -47,8 +55,15 @@ Successful response example:
 
 ## 4. Open interactive docs
 
-- Swagger UI: `https://public-api.notificator-project.com/`
-- OpenAPI JSON: `https://public-api.notificator-project.com/.netlify/functions/public-notify?format=openapi`
+- OpenAPI JSON: `https://api.notificator-project.com?format=openapi`
+
+:::tip[Need endpoint behavior details?]
+Continue with [Public Notify API](/reference/public-notify/) for full field rules, webhook compatibility, and error matrix.
+:::
+
+:::note[What success looks like]
+You should receive `ok: true` and `stored: true`. If not, compare your payload fields and auth header against the examples above.
+:::
 
 ## Notes
 

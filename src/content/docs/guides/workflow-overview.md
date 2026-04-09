@@ -5,6 +5,10 @@ description: End-to-end setup from account creation to WordPress integration and
 
 This guide connects all setup pieces in the recommended order.
 
+:::tip[Audience]
+This page is optimized for operational setup. If you need direct API testing and payload examples, use [Quick Start](/guides/quick-start/) in the Developer Guide.
+:::
+
 ## Step 1: Create your account
 
 Start in the mobile app and sign up/sign in with your email account.
@@ -27,6 +31,11 @@ Create a dedicated API key for your WordPress/plugin integration.
 If you also use the public endpoint, create a second key with type `Public API` (`public_client`).
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
+
+:::caution[Key type matters]
+Use `wordpress_server` for the WordPress plugin.
+Use `public_client` for the `public-notify` endpoint.
+:::
 
 ## Step 3: Configure WordPress plugin
 
@@ -73,6 +82,10 @@ Continue with [Early Access Device Setup](/guides/early-access-device-setup/).
 ## Step 6: Validate external API flow
 
 Use OpenAPI and samples to test your public-notify payloads.
+
+:::note[Optional developer validation]
+This final step is optional for no-code-only users and intended for teams validating external integrations.
+:::
 
 - Use a `Public API` key (`public_client`) for `public-notify` requests.
 

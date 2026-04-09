@@ -7,10 +7,14 @@ Use a `public_client` API key for the `public-notify` endpoint shown below.
 
 `wordpress_server` keys are for `wpnotif-api` and will be rejected here.
 
+:::tip[Production endpoint]
+Use `https://api.notificator-project.com` as the canonical public endpoint in all samples.
+:::
+
 ## JavaScript (fetch)
 
 ```js
-const endpoint = "https://public-api.notificator-project.com/.netlify/functions/public-notify";
+const endpoint = "https://api.notificator-project.com";
 const apiKey = process.env.WPNOTIF_API_KEY;
 
 const payload = {
@@ -54,7 +58,7 @@ type PublicNotifyPayload = {
 };
 
 export async function sendPublicNotify(payload: PublicNotifyPayload) {
-  const endpoint = "https://public-api.notificator-project.com/.netlify/functions/public-notify";
+  const endpoint = "https://api.notificator-project.com";
   const apiKey = process.env.WPNOTIF_API_KEY;
 
   const res = await fetch(endpoint, {
@@ -76,7 +80,7 @@ export async function sendPublicNotify(payload: PublicNotifyPayload) {
 
 ```php
 <?php
-$endpoint = 'https://public-api.notificator-project.com/.netlify/functions/public-notify';
+$endpoint = 'https://api.notificator-project.com';
 $apiKey = 'wpnotif_YOUR_API_KEY';
 
 $payload = [
@@ -116,7 +120,11 @@ echo $responseBody . "\n";
 ## Postman
 
 - Method: `POST`
-- URL: `https://public-api.notificator-project.com/.netlify/functions/public-notify`
+- URL: `https://api.notificator-project.com`
+
+:::note[Tip for shared configs]
+Store the endpoint in an environment variable and reuse it across services to avoid drift between environments.
+:::
 - Headers:
   - `Authorization: Bearer {{wpnotif_api_key}}`
   - `Content-Type: application/json`

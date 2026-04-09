@@ -5,7 +5,11 @@ description: Endpoint reference for external notification ingestion.
 
 ## Base endpoint
 
-`POST https://public-api.notificator-project.com/.netlify/functions/public-notify`
+`POST https://api.notificator-project.com`
+
+:::tip[Canonical URL]
+Use the `/public/` endpoint as the default for all external integrations and examples.
+:::
 
 ## Methods
 
@@ -28,7 +32,7 @@ Key type policy:
 
 ## OpenAPI document
 
-`GET https://public-api.notificator-project.com/.netlify/functions/public-notify?format=openapi`
+`GET https://api.notificator-project.com?format=openapi`
 
 ## Request fields
 
@@ -70,7 +74,7 @@ Normalization behavior:
 ### Example: JSON webhook
 
 ```bash
-curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+curl -X POST "https://api.notificator-project.com" \
   -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -85,7 +89,7 @@ curl -X POST "https://public-api.notificator-project.com/.netlify/functions/publ
 ### Example: Form-encoded webhook
 
 ```bash
-curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+curl -X POST "https://api.notificator-project.com" \
   -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "subject=Disk Space Alert" \
@@ -97,7 +101,7 @@ curl -X POST "https://public-api.notificator-project.com/.netlify/functions/publ
 ### Example: Plain-text webhook
 
 ```bash
-curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+curl -X POST "https://api.notificator-project.com" \
   -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
   -H "Content-Type: text/plain" \
   --data "Payment provider timeout on checkout"
@@ -131,6 +135,10 @@ curl -X POST "https://public-api.notificator-project.com/.netlify/functions/publ
 ```
 
 ## Error responses
+
+:::caution[Fast 401 checklist]
+If you receive `401`, check key type first (`public_client` or `internal_service` only), then verify the auth header name and value.
+:::
 
 - `400` invalid JSON
 - `401` invalid/missing key, wrong key type, or policy restriction

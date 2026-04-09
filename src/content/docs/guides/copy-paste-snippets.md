@@ -70,7 +70,7 @@ if ($result) {
 ## Public notify request (cURL)
 
 ```bash
-curl -X POST "https://public-api.notificator-project.com/.netlify/functions/public-notify" \
+curl -X POST "https://api.notificator-project.com" \
   -H "Authorization: Bearer wpnotif_YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
