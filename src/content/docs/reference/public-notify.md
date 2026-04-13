@@ -8,7 +8,7 @@ description: Endpoint reference for external notification ingestion.
 `POST https://api.notificator-project.com`
 
 :::tip[Canonical URL]
-Use the public endpoint exposed by your deployment domain. The serverless function path is `/.netlify/functions/public-notify`.
+Use `https://api.notificator-project.com` as the default public endpoint for integrations and examples.
 :::
 
 ## Methods

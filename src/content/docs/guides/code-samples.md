@@ -8,7 +8,7 @@ Use a `public_client` API key for the `public-notify` endpoint shown below.
 `wordpress_server` keys are for `wpnotif-api` and will be rejected here.
 
 :::tip[Production endpoint]
-Use `https://api.notificator-project.com` as the canonical public endpoint in all samples.
+Use `https://api.notificator-project.com` as the canonical public endpoint.
 :::
 
 ## JavaScript (fetch)
@@ -124,6 +124,12 @@ echo $responseBody . "\n";
 
 :::note[Tip for shared configs]
 Store the endpoint in an environment variable and reuse it across services to avoid drift between environments.
+:::
+
+:::caution[Payload must not be empty]
+Send at least one meaningful notification field such as `title`, `body`, `message`, `category`, `severity`, or non-empty `payload`/`data`.
+
+Requests with only delivery flags like `sendPush` or `sendMqtt` return `400`.
 :::
 - Headers:
   - `Authorization: Bearer {{wpnotif_api_key}}`

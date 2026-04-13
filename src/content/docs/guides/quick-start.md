@@ -70,3 +70,5 @@ You should receive `ok: true` and `stored: true`. If not, compare your payload f
 - URL fields are optional for third-party notifications.
 - Public endpoint does not send emails.
 - If body is empty, app shows structured table only.
+- Requests with no meaningful payload fields return `400`.
+- If your key has `allowed_domains`, ensure your request includes a matching `Origin` or `Referer`.

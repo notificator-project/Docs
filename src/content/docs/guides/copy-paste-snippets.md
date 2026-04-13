@@ -84,6 +84,13 @@ curl -X POST "https://api.notificator-project.com" \
   }'
 ```
 
+## Public notify troubleshooting quick checks
+
+- `401` + `Invalid API key`: verify header value and that the key is not revoked.
+- `401` + key type error: use `public_client` or `internal_service`.
+- `401` + origin error: match `Origin`/`Referer` to key `allowed_domains`.
+- `400` empty payload: include at least one meaningful field (for example `title` or `payload`).
+
 ## WordPress request headers (signed)
 
 ```php
