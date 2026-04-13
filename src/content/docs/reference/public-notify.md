@@ -3,23 +3,25 @@ title: Public Notify API
 description: Endpoint reference for external notification ingestion.
 ---
 
-## Base endpoint
+## Endpoint Summary
 
-`POST https://api.notificator-project.com`
+- Base URL: `https://api.notificator-project.com`
+- Resource: `/` on the public API domain
+- Primary method: `POST`
 
-:::tip[Canonical URL]
-Use `https://api.notificator-project.com` as the default public endpoint for integrations and examples.
-:::
+Supported methods:
 
-## Methods
-
-- `POST` send external notification
-- `GET` function metadata (or OpenAPI with query flag)
+- `POST` create and dispatch an external notification
+- `GET` return endpoint metadata (or OpenAPI with `?format=openapi`)
 - `OPTIONS` CORS preflight
+
+OpenAPI document:
+
+- `GET https://api.notificator-project.com?format=openapi`
 
 ## Authentication
 
-Provide one of:
+Provide exactly one API key using any of these headers:
 
 - `Authorization: Bearer wpnotif_...`
 - `X-API-Key: wpnotif_...`
@@ -27,64 +29,60 @@ Provide one of:
 
 Key type policy:
 
-- Accepted: `public_client`, `internal_service`
+- Allowed: `public_client`, `internal_service`
 - Rejected: `wordpress_server`
 
-Origin/domain policy:
+Domain policy:
 
-- If a key has `allowed_domains`, incoming `Origin`/`Referer` host must match one of them.
-- Requests without `Origin`/`Referer` are allowed (common for server-to-server calls).
-- `localhost` and `127.0.0.1` are allowed for local testing.
+- If a key has `allowed_domains`, request `Origin` or `Referer` host must match.
+- Requests without `Origin` or `Referer` are accepted for server-to-server traffic.
+- `localhost` and `127.0.0.1` are always accepted for local testing.
 
-## OpenAPI document
+## Request Contract
 
-`GET https://api.notificator-project.com?format=openapi`
-
-## Request fields
-
-Core:
-
-- `title` string
-- `body` string (optional)
-- `source` string (optional, defaults to `third_party`)
-- `category` enum: `info`, `task`, `promo`
-- `severity` enum: `info`, `warning`, `error`, `critical`
-
-Delivery control:
-
-- `sendPush` boolean (default `true`)
-- `sendMqtt` boolean (default `true`)
-- `deviceId` string (optional single target)
-
-Data payload:
-
-- `payload` object (preferred metadata block)
-- `data` object
-- additional top-level keys are merged into `data`
-
-Minimum payload rule:
-
-- The request must include at least one meaningful notification field.
-- Accepted examples: `title`, `body`, `message`, `category`, `severity`, or non-empty `payload`/`data`.
-- Empty bodies (or bodies with only control flags like `sendPush`) return `400`.
-
-## Webhook compatibility
-
-`public-notify` accepts common webhook request formats out of the box:
+Content types accepted:
 
 - `application/json`
 - `application/x-www-form-urlencoded`
 - `text/plain`
 
-Normalization behavior:
+Minimum payload requirement:
+
+- A request must include at least one meaningful notification field.
+- Valid examples: `title`, `body`, `message`, `category`, `severity`, non-empty `payload`, or non-empty `data`.
+- Requests that only include control flags (for example only `sendPush`) return `400`.
+
+### Request fields
+
+| Field | Type | Required | Default | Notes |
+| --- | --- | --- | --- | --- |
+| `title` | string | No | `External Notification` | Trimmed to 140 chars. |
+| `body` | string | No | `""` | Trimmed to 2000 chars. |
+| `source` | string | No | `third_party` | Trimmed to 200 chars. |
+| `category` | string | No | `info` | Normalized to `info`, `task`, `promo`. |
+| `severity` | string | No | `null` | Normalized to `info`, `warning`, `error`, `critical` or omitted. |
+| `sendPush` | boolean | No | `true` | Controls Expo push send attempt. |
+| `sendMqtt` | boolean | No | `true` | Controls MQTT publish step. |
+| `deviceId` | string | No | all active devices | Sends MQTT only to one device when provided. |
+| `mqttQos` | number | No | `1` | Valid values: `0`, `1`, `2`. |
+| `payload` | object | No | `{}` | Preferred metadata object merged into downstream `data`. |
+| `data` | object | No | `{}` | Additional metadata object merged into downstream `data`. |
+
+Any additional top-level fields are preserved and merged into internal `data`.
+
+## Normalization Rules
+
+Incoming payloads are normalized for common webhook formats:
 
 - `subject` -> `title`
 - `description` or `text` -> `body`
 - `service` -> `source`
-- `payload` / `data` are auto-parsed when sent as JSON strings
-- `category` and `severity` are resolved from top-level, then `payload`, then `data`
+- JSON string values in `payload` and `data` are auto-parsed into objects
+- `category` and `severity` resolution precedence: top-level -> `payload` -> `data`
 
-### Example: JSON webhook
+## Example Requests
+
+### JSON webhook
 
 ```bash
 curl -X POST "https://api.notificator-project.com" \
@@ -99,7 +97,7 @@ curl -X POST "https://api.notificator-project.com" \
   }'
 ```
 
-### Example: Form-encoded webhook
+### Form-encoded webhook
 
 ```bash
 curl -X POST "https://api.notificator-project.com" \
@@ -111,7 +109,7 @@ curl -X POST "https://api.notificator-project.com" \
   --data-urlencode "payload={\"host\":\"api-1\",\"disk\":92}"
 ```
 
-### Example: Plain-text webhook
+### Plain-text webhook
 
 ```bash
 curl -X POST "https://api.notificator-project.com" \
@@ -120,7 +118,7 @@ curl -X POST "https://api.notificator-project.com" \
   --data "Payment provider timeout on checkout"
 ```
 
-## Successful response
+## Success Response
 
 ```json
 {
@@ -147,18 +145,40 @@ curl -X POST "https://api.notificator-project.com" \
 }
 ```
 
-## Error responses
+### Success fields
 
-:::caution[Fast 401 checklist]
-If you receive `401`, check key type first (`public_client` or `internal_service` only), then verify the auth header name and value.
+| Field | Type | Description |
+| --- | --- | --- |
+| `ok` | boolean | `true` when request was processed. |
+| `kind` | string | Always `external_notification`. |
+| `stored` | boolean | Whether encrypted notification was stored. |
+| `storeReason` | string | Included when `stored` is `false`. |
+| `payloadPreview` | object | Sanitized preview of normalized payload. |
+| `pushSent` | boolean | At least one push token succeeded. |
+| `pushAttempted` | number | Number of push tokens attempted. |
+| `pushEnabled` | boolean | Reflects request-level `sendPush`. |
+| `emailEnabled` | boolean | Always `false` for this endpoint. |
+| `mqttPublishedCount` | number | Number of MQTT publishes completed. |
+| `mqttSkipped` | boolean | `true` when no active MQTT targets were available. |
+| `mqttSkipReason` | string | Included when MQTT was skipped. |
+| `mqttEnabled` | boolean | Reflects request-level `sendMqtt`. |
+| `timestamp` | string | Server timestamp in ISO-8601 format. |
+
+## Error Responses
+
+:::caution[401 quick checklist]
+For `401`, verify header name, key value, key type (`public_client` or `internal_service`), and domain policy.
 :::
 
-- `400` invalid request body or empty payload (no meaningful notification fields)
-- `401` missing auth (`Authorization required`)
-- `401` invalid API key (`Invalid API key`)
-- `401` disallowed key type (`API key type not allowed for this endpoint...`)
-- `401` domain restriction failure (`Origin is not allowed for this API key`)
-- `401` temporary auth backend issue (`Authentication service unavailable`)
-- `404` `deviceId` not found
-- `409` device inactive/paused
-- `502` MQTT publish failed
+| HTTP | Example error | Meaning |
+| --- | --- | --- |
+| `400` | `Invalid request body` | Body could not be parsed. |
+| `400` | `Request payload is empty` | No meaningful notification fields were provided. |
+| `401` | `Authorization required` | No auth header/key supplied. |
+| `401` | `Invalid API key` | Key missing, revoked, or unknown. |
+| `401` | `API key type not allowed for this endpoint...` | Key type is not `public_client` or `internal_service`. |
+| `401` | `Origin is not allowed for this API key` | Domain policy denied request. |
+| `401` | `Authentication service unavailable` | Backend key validation service not configured/available. |
+| `404` | `Device not found for user` | Provided `deviceId` does not belong to key owner. |
+| `409` | `Device is inactive or paused` | Target device exists but is not publishable. |
+| `502` | `MQTT publish failed` | MQTT delivery failed for selected targets. |
