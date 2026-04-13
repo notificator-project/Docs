@@ -63,6 +63,7 @@ Minimum payload requirement:
 | `severity` | string | No | `null` | Normalized to `info`, `warning`, `error`, `critical` or omitted. |
 | `sendPush` | boolean | No | `true` | Controls Expo push send attempt. |
 | `sendMqtt` | boolean | No | `true` | Controls MQTT publish step. |
+| `strictDelivery` | boolean | No | `false` | When `true`, MQTT failures return `502` (fail-fast). When `false`, MQTT failures are reported as partial success (`200`). |
 | `deviceId` | string | No | all active devices | Sends MQTT only to one device when provided. |
 | `mqttQos` | number | No | `1` | Valid values: `0`, `1`, `2`. |
 | `payload` | object | No | `{}` | Preferred metadata object merged into downstream `data`. |
@@ -120,6 +121,8 @@ curl -X POST "https://api.notificator-project.com" \
 
 ## Success Response
 
+By default (`strictDelivery: false`), MQTT publish failures do **not** fail the whole request. The endpoint returns `200` with `ok: true` plus MQTT warning fields.
+
 ```json
 {
   "ok": true,
@@ -139,7 +142,29 @@ curl -X POST "https://api.notificator-project.com" \
   "pushEnabled": true,
   "emailEnabled": false,
   "mqttPublishedCount": 1,
+  "mqttFailedCount": 0,
   "mqttSkipped": false,
+  "mqttError": null,
+  "warnings": [],
+  "mqttEnabled": true,
+  "timestamp": "2026-03-29T12:00:00.000Z"
+}
+```
+
+### Partial success example (MQTT failure)
+
+```json
+{
+  "ok": true,
+  "kind": "external_notification",
+  "stored": true,
+  "pushSent": true,
+  "pushAttempted": 1,
+  "pushEnabled": true,
+  "mqttPublishedCount": 0,
+  "mqttFailedCount": 1,
+  "mqttError": "Publish failed",
+  "warnings": ["mqtt_publish_failed_partial"],
   "mqttEnabled": true,
   "timestamp": "2026-03-29T12:00:00.000Z"
 }
@@ -158,9 +183,12 @@ curl -X POST "https://api.notificator-project.com" \
 | `pushAttempted` | number | Number of push tokens attempted. |
 | `pushEnabled` | boolean | Reflects request-level `sendPush`. |
 | `emailEnabled` | boolean | Always `false` for this endpoint. |
-| `mqttPublishedCount` | number | Number of MQTT publishes completed. |
+| `mqttPublishedCount` | number | Number of successful MQTT publishes completed. |
+| `mqttFailedCount` | number | Number of MQTT publish failures in the request. |
 | `mqttSkipped` | boolean | `true` when no active MQTT targets were available. |
 | `mqttSkipReason` | string | Included when MQTT was skipped. |
+| `mqttError` | string | First MQTT error message when one or more publishes fail. |
+| `warnings` | string[] | Warning codes for partial-success outcomes (for example `mqtt_publish_failed_partial`). |
 | `mqttEnabled` | boolean | Reflects request-level `sendMqtt`. |
 | `timestamp` | string | Server timestamp in ISO-8601 format. |
 
@@ -181,4 +209,4 @@ For `401`, verify header name, key value, key type (`public_client` or `internal
 | `401` | `Authentication service unavailable` | Backend key validation service not configured/available. |
 | `404` | `Device not found for user` | Provided `deviceId` does not belong to key owner. |
 | `409` | `Device is inactive or paused` | Target device exists but is not publishable. |
-| `502` | `MQTT publish failed` | MQTT delivery failed for selected targets. |
+| `502` | `MQTT publish failed` | Returned only when `strictDelivery=true` and MQTT publish fails. |
