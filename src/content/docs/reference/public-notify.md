@@ -119,6 +119,24 @@ curl -X POST "https://api.notificator-project.com" \
   --data "Payment provider timeout on checkout"
 ```
 
+### Strict delivery request (fail-fast MQTT)
+
+Use this mode when your caller must treat MQTT delivery as mandatory.
+
+```bash
+curl -X POST "https://api.notificator-project.com" \
+  -H "Authorization: Bearer wpnotif_YOUR_PUBLIC_CLIENT_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Queue Backlog High",
+    "body": "Order queue is above threshold.",
+    "source": "erp_worker",
+    "sendMqtt": true,
+    "strictDelivery": true,
+    "payload": { "queue": "orders", "pending": 182 }
+  }'
+```
+
 ## Success Response
 
 By default (`strictDelivery: false`), MQTT publish failures do **not** fail the whole request. The endpoint returns `200` with `ok: true` plus MQTT warning fields.
