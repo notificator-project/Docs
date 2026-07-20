@@ -16,7 +16,7 @@ A template pre-fills scenario settings in the admin UI:
 - optional prefilled `conditions`
 
 :::note[Event registration vs. templates]
-An [event registration](/guides/wordpress-custom-events/) describes what your plugin emits. A template recommends how an administrator might use it. Integrations can provide either or both, but providing both gives the best experience.
+An [event registration](/guides/wordpress-custom-events/) describes what your plugin emits and makes it visible in Discover; it does not create a notification. A template recommends how an administrator might use that event; it becomes a notification only after the user applies and saves it. Integrations can provide either or both, but providing both gives the best experience.
 :::
 
 ## Minimal registration example

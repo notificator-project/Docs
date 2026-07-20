@@ -9,6 +9,31 @@ Use the event registration API when your plugin already emits meaningful WordPre
 Registration documents an event. Your plugin still emits an ordinary WordPress action with `do_action()`, so the event remains useful to every WordPress integration—not only Notificator.
 :::
 
+## Registered event vs. template
+
+These features are related, but they do different jobs:
+
+| Feature | What it represents | Where users see it | What it does not do |
+| --- | --- | --- | --- |
+| Registered event | Something the plugin can emit, including its hook name, description, and payload fields. | **Notifications → Discover events** | It does not create or send a notification by itself. |
+| Template | A suggested notification setup for an event, including its name, priority, notes, and conditions. | **Notifications → Templates** | It does not emit or register the underlying event. |
+
+A template becomes a real notification only after an administrator applies and saves it. The strongest integration supplies both: the event tells Notificator **what can happen**, while the template recommends **what the user can do with it**.
+
+## Install the sample plugin
+
+[Download the installable Notificator Companion Sample Plugin](https://raw.githubusercontent.com/vagelisp/netlify-uptime-monitor/main/plugin/examples/notificator-companion-sample-plugin.zip).
+
+1. Download the sample ZIP without extracting it.
+2. In WordPress Admin, open **Plugins → Add New → Upload Plugin**.
+3. Choose `notificator-companion-sample-plugin.zip`, select **Install Now**, and activate it.
+4. Open **Notificator Companion → Support**. Developer integrations should show one detected event and one third-party template.
+5. Open **Notifications → Templates** and apply **Sample message notification**.
+6. Save it with Dashboard enabled.
+7. Open **Notificator Companion → Sample Integration**, trigger the event, and check Activity.
+
+The sample uses a nonce-protected form, provides named `message` and `suffix` arguments, and requires no API key for the Dashboard test.
+
 ## Minimal integration
 
 Register event definitions through `notificator_companion_register_events`:
@@ -104,7 +129,7 @@ Notificator can then use `order.total` in a condition or supported placeholder w
 
 ## Add a ready-made template
 
-Registration makes an event discoverable. A template can additionally recommend a useful configuration, priority, notes, and conditions. See [Plugin Template Creation](/guides/plugin-template-creation/).
+Registration makes an event discoverable but does not create a notification. A template can additionally recommend a useful configuration, priority, notes, and conditions; it is only applied when the administrator chooses it. See [Plugin Template Creation](/guides/plugin-template-creation/).
 
 ## Verify the integration
 
