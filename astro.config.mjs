@@ -7,7 +7,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Notificator Project Docs',
-			description: 'Documentation for the public-notify endpoint, including auth, examples, and OpenAPI reference.',
+			description: 'Documentation for Notificator, its WordPress companion, mobile delivery, MQTT, and public API.',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/notificator-project/' }],
 			sidebar: [
 				{ label: 'Welcome', slug: '' },
@@ -25,11 +25,12 @@ export default defineConfig({
 				{
 					label: 'Developer Guide',
 					items: [
-							{ label: 'Quick Start', slug: 'guides/quick-start' },
+						{ label: 'Quick Start', slug: 'guides/quick-start' },
 						{ label: 'Code Samples', slug: 'guides/code-samples' },
+						{ label: 'WordPress Custom Events', slug: 'guides/wordpress-custom-events' },
 						{ label: 'Plugin Template Creation', slug: 'guides/plugin-template-creation' },
-						{ label: 'Plugin Hooks Notifications', slug: 'guides/plugin-hooks-notifications' },
-							{ label: 'Copy-Paste Snippets', slug: 'guides/copy-paste-snippets' },
+						{ label: 'Hook Discovery', slug: 'guides/plugin-hooks-notifications' },
+						{ label: 'Copy-Paste Snippets', slug: 'guides/copy-paste-snippets' },
 					],
 				},
 				{

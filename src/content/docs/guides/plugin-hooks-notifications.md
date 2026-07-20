@@ -1,82 +1,50 @@
 ---
-title: Plugin Hooks Notifications
-description: Use WordPress hooks so Notificator can send notifications when plugin events occur.
+title: WordPress Hook Discovery
+description: Understand scanned hooks, observed events, and explicit event integrations.
 ---
 
-This guide shows how to emit hooks from your plugin and let Notificator Companion turn those events into push/MQTT notifications.
+Notificator can learn about WordPress events in two ways.
 
-## How it works
+## Explicit registration (recommended for plugin authors)
 
-1. Your plugin emits a WordPress action/filter hook.
-2. Notificator Companion listens to configured hook names.
-3. On trigger, it builds payload and sends notification.
+A plugin registers the action name, a plain-language description, and ordered argument names. The event appears in Discover immediately with high confidence and does not depend on static code scanning.
 
-## Emit a custom action hook
+Follow [WordPress Custom Events](/guides/wordpress-custom-events/) to publish a first-class integration.
 
-In your plugin code:
+## Source-code discovery
 
-```php
-<?php
-// Example event: after custom order is created.
-do_action('my_plugin_order_created', $order_id, $user_id, $amount);
-```
+For plugins without a Notificator integration, **Scan plugins** looks for WordPress emitters such as:
 
-Then in Notificator Companion UI:
+- `do_action()` and `do_action_ref_array()`;
+- `apply_filters()` and `apply_filters_ref_array()`;
+- supported prefixed wrapper functions.
 
-- Add scenario with `hook_name`: `my_plugin_order_created`
-- Set scenario name/notes
-- Enable send push / send mqtt as needed
+Discovery ranks likely emitted events above callback registrations and routine lifecycle hooks. It also provides separate views for dynamic patterns, registration-only matches, and potentially noisy hooks.
 
-## Emit with wrapper functions
+## Observation mode
 
-The scanner supports prefixed wrappers too (for example `gf_do_action`).
+Static analysis cannot prove that an event runs on your site. Use **Observe for 10 min** to record safe runtime metadata:
 
-```php
-<?php
-gf_do_action('my_plugin_sync_completed', $job_id, $duration_ms);
-```
+- execution count;
+- argument count and types;
+- last-seen time and request context.
 
-## Filter-based events
+Argument values are not stored by observation mode.
 
-Filter hooks can be used as trigger sources as well.
+## Choosing an event
 
-```php
-<?php
-$value = apply_filters('my_plugin_before_export', $value, $context);
-```
+Prefer events that are:
 
-## Conditions and payload tips
+- explicitly registered or rated high confidence;
+- emitted after a meaningful business outcome;
+- stable across plugin versions;
+- narrow enough to avoid excessive volume;
+- supplied with useful argument names for conditions.
 
-When defining scenario conditions:
-
-- Use stable argument order in your hook calls.
-- Keep argument types predictable (number/string).
-- Use descriptive scenario names for easier triage.
-
-Example condition target:
-
-- field: `user_id`
-- operator: `>=`
-- value: `1`
-
-## Recommended production safeguards
-
-- Keep hook names unique and namespaced (`my_plugin_*`).
-- Use Notificator throttle settings to avoid noisy bursts.
-- Test each scenario with controlled sample events first.
-
-## Troubleshooting
-
-No notifications on hook trigger:
-
-1. Confirm scenario is enabled.
-2. Confirm exact hook name match.
-3. Re-run plugin hook scan in Notificator admin.
-4. Check plugin log entries and Netlify/API logs.
-5. Verify API key and endpoint settings.
+Use conditions and throttling for events that can fire frequently.
 
 ## Related
 
+- [WordPress Custom Events](/guides/wordpress-custom-events/)
 - [Plugin Template Creation](/guides/plugin-template-creation/)
-- [Public Notify API](/reference/public-notify/)
-- [Copy-Paste Snippets](/guides/copy-paste-snippets/)
+- [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)

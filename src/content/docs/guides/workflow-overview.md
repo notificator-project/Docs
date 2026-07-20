@@ -9,26 +9,32 @@ This guide connects all setup pieces in the recommended order.
 This page is optimized for operational setup. If you need direct API testing and payload examples, use [Quick Start](/guides/quick-start/) in the Developer Guide.
 :::
 
-## Step 1: Create your account
+## Step 1: Install the WordPress plugin
 
-Start in the mobile app and sign up/sign in with your email account.
+Install Notificator Companion and open **Notificator Companion → Overview**.
 
-- Open the app and complete authentication.
-- Confirm your session is active.
-- Open the Settings/Profile tab.
+- Scan active plugins to discover events.
+- Apply a template or create a notification from a discovered event.
+- Leave **Dashboard** enabled as the delivery channel.
 
-Continue with [Create Account](/guides/account-creation/).
+No Notificator account or API key is needed for dashboard notifications. Continue with [WordPress Plugin Setup](/guides/wordpress-plugin-setup/).
 
-## Step 2: Create an API key in mobile
+## Step 2: Verify dashboard delivery
 
-Create a dedicated API key for your WordPress/plugin integration.
+Trigger the event and check **Notificator Companion → Activity**. Dashboard-only events appear as delivered and can show a toast in wp-admin.
 
-- Go to Profile -> API Keys.
-- Create a named key (for example: `wordpress-prod`).
-- Choose type `WordPress` (`wordpress_server`).
-- Copy and store the key securely.
+- Each notification has its own Dashboard toggle.
+- Settings also contains a global dashboard-toast switch and presentation controls.
+- Use event conditions and throttling to reduce noise.
 
-If you also use the public endpoint, create a second key with type `Public API` (`public_client`).
+## Step 3: Connect remote delivery (optional)
+
+Create an account and WordPress API key only if you want mobile push or MQTT.
+
+- Sign in to the mobile app.
+- Create a `WordPress` (`wordpress_server`) API key.
+- Add and enable that key under **Notificator Companion → Settings → Remote delivery**.
+- Edit an event and enable **Mobile push**, **MQTT**, or both.
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
@@ -37,27 +43,18 @@ Use `wordpress_server` for the WordPress plugin.
 Use `public_client` for the `public-notify` endpoint.
 :::
 
-## Step 3: Configure WordPress plugin
-
-Install and configure the plugin with your function endpoint and API key.
-
-- Set function URL to your deployed `wpnotif-api` endpoint.
-- Paste a `WordPress` key (`wordpress_server`).
-- Add monitors and run a test notification.
-
-Continue with [WordPress Plugin Setup](/guides/wordpress-plugin-setup/).
-
 ## Step 4: Add plugin templates and hook integrations
 
 If you are a plugin/theme developer and want deeper integration:
 
 - Create reusable scenario templates that appear in Notificator UI.
-- Emit hooks from your plugin and let Notificator send notifications when they fire.
+- Register custom events with accurate descriptions and payload field names.
+- Emit normal WordPress actions and let administrators choose their delivery channels.
 
 Continue with:
 
 - [Plugin Template Creation](/guides/plugin-template-creation/)
-- [Plugin Hooks Notifications](/guides/plugin-hooks-notifications/)
+- [WordPress Custom Events](/guides/wordpress-custom-events/)
 
 ## Step 5: Configure app settings
 

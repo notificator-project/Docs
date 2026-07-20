@@ -3,7 +3,7 @@ title: Plugin Template Creation
 description: Register reusable Notificator scenario templates from your plugin or theme.
 ---
 
-This guide is for plugin/theme developers who want their own prebuilt scenario templates to appear inside Notificator Companion.
+This guide is for plugin/theme developers who want prebuilt notification templates to appear inside Notificator Companion. Register the underlying event as well when you want accurate, scan-free discovery.
 
 ## What a template gives you
 
@@ -14,6 +14,10 @@ A template pre-fills scenario settings in the admin UI:
 - `scenario_name`
 - optional `hook_meta`
 - optional prefilled `conditions`
+
+:::note[Event registration vs. templates]
+An [event registration](/guides/wordpress-custom-events/) describes what your plugin emits. A template recommends how an administrator might use it. Integrations can provide either or both, but providing both gives the best experience.
+:::
 
 ## Minimal registration example
 
@@ -58,7 +62,9 @@ add_action('notificator_companion_register_templates', function () {
 
 ## Make your custom slug visible
 
-If you use custom `required_plugin`, add your slug to active identifiers:
+If you also [register an event](/guides/wordpress-custom-events/) with the same `plugin_slug`, Notificator automatically treats that template group as active.
+
+For a template-only integration, add a custom `required_plugin` slug to the active identifiers:
 
 ```php
 add_filter('notificator_companion_active_plugin_identifiers', function ($ids) {
@@ -85,13 +91,14 @@ If you do not want custom slug handling, set:
 ## Verification checklist
 
 1. Activate your plugin and Notificator Companion.
-2. Open Notificator admin page.
-3. Open templates picker and confirm your template appears.
+2. Open **Notificator Companion → Notifications → Templates**.
+3. Confirm your template appears in its plugin group.
 4. Apply template and save scenario.
 5. Trigger the hook and verify notification arrives.
 
 ## Related
 
 - [Plugin Hooks Notifications](/guides/plugin-hooks-notifications/)
+- [WordPress Custom Events](/guides/wordpress-custom-events/)
 - [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
 - [Copy-Paste Snippets](/guides/copy-paste-snippets/)
