@@ -5,16 +5,20 @@ description: Create and verify your Notificator account from the mobile app.
 
 ## Prerequisites
 
-- Mobile app installed.
+- Install **Notificator** from the Apple App Store or Google Play Store.
 - Internet connection.
 
 ## Account creation steps
 
-1. Open the mobile app.
-2. Choose Sign Up.
+1. Open the Notificator mobile app.
+2. Choose **Sign Up**.
 3. Enter your email and password.
 4. Complete verification flow if prompted.
-5. Sign in and open the Settings/Profile tab.
+5. Sign in and open the Profile or Settings tab.
+
+:::note[Optional for WordPress dashboard alerts]
+You do not need an account to configure the WordPress plugin, discover events, create notifications, or receive dashboard alerts. Create an account when you want mobile push, MQTT, or connected-device delivery.
+:::
 
 ## Recommended first checks
 

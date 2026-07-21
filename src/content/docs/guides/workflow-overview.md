@@ -11,7 +11,7 @@ This page is optimized for operational setup. If you need direct API testing and
 
 ## Step 1: Install the WordPress plugin
 
-Install Notificator Companion and open **Notificator Companion → Overview**.
+Install Notificator and open **Notificator → Overview**.
 
 - Scan active plugins to discover events.
 - Apply a template or create a notification from a discovered event.
@@ -21,7 +21,7 @@ No Notificator account or API key is needed for dashboard notifications. Continu
 
 ## Step 2: Verify dashboard delivery
 
-Trigger the event and check **Notificator Companion → Activity**. Dashboard-only events appear as delivered and can show a toast in wp-admin.
+Trigger the event and check **Notificator → Activity**. Dashboard-only events appear as delivered and can show a toast in wp-admin.
 
 - Each notification has its own Dashboard toggle.
 - Settings also contains a global dashboard-toast switch and presentation controls.
@@ -33,8 +33,8 @@ Create an account and WordPress API key only if you want mobile push or MQTT.
 
 - Sign in to the mobile app.
 - Create a `WordPress` (`wordpress_server`) API key.
-- Add and enable that key under **Notificator Companion → Settings → Remote delivery**.
-- Edit an event and enable **Mobile push**, **MQTT**, or both.
+- Add and enable that key under **Notificator → Settings → Remote delivery**.
+- Edit the notification and enable **Mobile push**, **MQTT**, or both.
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
@@ -66,7 +66,7 @@ Tune notifications, security, and home widgets from mobile settings.
 
 Continue with [App Settings Guide](/guides/app-settings/).
 
-## Step 5b: Configure Early Access device (optional)
+## Step 6: Configure an Early Access device (optional)
 
 If you use the physical Early Access ESP32 device:
 
@@ -76,7 +76,7 @@ If you use the physical Early Access ESP32 device:
 
 Continue with [Early Access Device Setup](/guides/early-access-device-setup/).
 
-## Step 6: Validate external API flow
+## Step 7: Validate external API flow
 
 Use OpenAPI and samples to test your public-notify payloads.
 

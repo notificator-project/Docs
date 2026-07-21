@@ -21,6 +21,8 @@ For plugins without a Notificator integration, **Scan plugins** looks for WordPr
 
 Discovery ranks likely emitted events above callback registrations and routine lifecycle hooks. It also provides separate views for dynamic patterns, registration-only matches, and potentially noisy hooks.
 
+The scan is designed for production sites: it processes plugins in resumable background batches, prevents overlapping jobs, bounds work per plugin, and reuses results for unchanged files. Start with active plugins only. Under **Notificator → Settings → Event discovery**, adjust the per-plugin event limit only when you need a wider result set; it is not a site-wide total.
+
 ## Observation mode
 
 Static analysis cannot prove that an event runs on your site. Use **Observe for 10 min** to record safe runtime metadata:
@@ -30,6 +32,8 @@ Static analysis cannot prove that an event runs on your site. Use **Observe for 
 - last-seen time and request context.
 
 Argument values are not stored by observation mode.
+
+Observation is optional and temporary. It batches database writes to reduce load, but it still adds runtime bookkeeping while active. Use it when static discovery cannot tell whether a candidate actually fires, then stop it when you have enough evidence.
 
 ## Choosing an event
 

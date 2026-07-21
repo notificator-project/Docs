@@ -13,24 +13,24 @@ Registration documents an event. Your plugin still emits an ordinary WordPress a
 
 These features are related, but they do different jobs:
 
-| Feature | What it represents | Where users see it | What it does not do |
-| --- | --- | --- | --- |
-| Registered event | Something the plugin can emit, including its hook name, description, and payload fields. | **Notifications → Discover events** | It does not create or send a notification by itself. |
-| Template | A suggested notification setup for an event, including its name, priority, notes, and conditions. | **Notifications → Templates** | It does not emit or register the underlying event. |
+| Feature          | What it represents                                                                                | Where users see it                  | What it does not do                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------- |
+| Registered event | Something the plugin can emit, including its hook name, description, and payload fields.          | **Notifications → Discover events** | It does not create or send a notification by itself. |
+| Template         | A suggested notification setup for an event, including its name, priority, notes, and conditions. | **Notifications → Templates**       | It does not emit or register the underlying event.   |
 
 A template becomes a real notification only after an administrator applies and saves it. The strongest integration supplies both: the event tells Notificator **what can happen**, while the template recommends **what the user can do with it**.
 
 ## Install the sample plugin
 
-[Download the installable Notificator Companion Sample Plugin](https://raw.githubusercontent.com/vagelisp/netlify-uptime-monitor/main/plugin/examples/notificator-companion-sample-plugin.zip).
+[Download the installable Notificator Sample Plugin](https://raw.githubusercontent.com/notificator-project/WordPress-Plugin/main/examples/notificator-sample-plugin.zip).
 
 1. Download the sample ZIP without extracting it.
 2. In WordPress Admin, open **Plugins → Add New → Upload Plugin**.
-3. Choose `notificator-companion-sample-plugin.zip`, select **Install Now**, and activate it.
-4. Open **Notificator Companion → Support**. Developer integrations should show one detected event and one third-party template.
+3. Choose `notificator-sample-plugin.zip`, select **Install Now**, and activate it.
+4. Open **Notificator → Developer**. Developer integrations should show one detected event and one third-party template.
 5. Open **Notifications → Templates** and apply **Sample message notification**.
 6. Save it with Dashboard enabled.
-7. Open **Notificator Companion → Sample Integration**, trigger the event, and check Activity.
+7. Open **Notificator → Sample Integration**, trigger the event, and check Activity.
 
 The sample uses a nonce-protected form, provides named `message` and `suffix` arguments, and requires no API key for the Dashboard test.
 
@@ -64,20 +64,24 @@ Emit the action where the business event occurs:
 do_action( 'acme_order_flagged', $order_id, $reason );
 ```
 
-Administrators can now find **Order flagged** in **Notificator Companion → Notifications → Discover events** and create a Dashboard, Mobile push, or MQTT notification.
+Administrators can now find **Order flagged** in **Notificator → Notifications → Discover events** and create a Dashboard, Mobile push, or MQTT notification.
+
+:::note[Public PHP API names]
+The WordPress integration functions and hooks use the `notificator_companion_` prefix. Use these identifiers exactly as documented even though the public plugin name is **Notificator**.
+:::
 
 ## Registration fields
 
-| Field | Required | Purpose |
-| --- | --- | --- |
-| `hook_name` | Yes | Exact action name passed to `do_action()`. |
-| `label` | No | Short name shown to administrators. |
-| `description` | No | Non-technical explanation of when the event fires. |
-| `plugin_slug` | No | Stable slug used to group your events. |
-| `plugin_name` | No | Product name displayed in the UI. |
-| `plugin_file` | No | Plugin basename used for integration status. |
-| `arg_names` | No | Ordered names matching the emitted arguments. |
-| `properties` | No | Safe object-property metadata for conditions and placeholders. |
+| Field         | Required | Purpose                                                        |
+| ------------- | -------- | -------------------------------------------------------------- |
+| `hook_name`   | Yes      | Exact action name passed to `do_action()`.                     |
+| `label`       | No       | Short name shown to administrators.                            |
+| `description` | No       | Non-technical explanation of when the event fires.             |
+| `plugin_slug` | No       | Stable slug used to group your events.                         |
+| `plugin_name` | No       | Product name displayed in the UI.                              |
+| `plugin_file` | No       | Plugin basename used for integration status.                   |
+| `arg_names`   | No       | Ordered names matching the emitted arguments.                  |
+| `properties`  | No       | Safe object-property metadata for conditions and placeholders. |
 
 The function returns `true` when accepted. Invalid hook names return `false`. Registering the same `plugin_slug` and `hook_name` again replaces its earlier definition instead of creating a duplicate.
 
@@ -133,8 +137,8 @@ Registration makes an event discoverable but does not create a notification. A t
 
 ## Verify the integration
 
-1. Activate your plugin and Notificator Companion 2.3.0 or newer.
-2. Open **Support → Developer integrations** and confirm the event count and name.
+1. Activate your plugin and Notificator 1.1 or newer.
+2. Open **Notificator → Developer** and confirm the event count and name.
 3. Open **Notifications → Discover events**; no scan is required.
 4. Create a Dashboard notification for the event.
 5. Emit the action in a controlled test.
@@ -143,7 +147,7 @@ Registration makes an event discoverable but does not create a notification. A t
 
 ## Backward compatibility
 
-If Notificator Companion is inactive, the registration callback is harmless and your normal `do_action()` call continues to work. Plugin load order is handled by the registration action.
+If Notificator is inactive, the registration callback is harmless and your normal `do_action()` call continues to work. Plugin load order is handled by the registration action.
 
 ## Related
 

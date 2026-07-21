@@ -1,47 +1,95 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		starlight({
-			title: 'Notificator Project Docs',
-			description: 'Documentation for Notificator, its WordPress companion, mobile delivery, MQTT, and public API.',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/notificator-project/' }],
-			sidebar: [
-				{ label: 'Welcome', slug: '' },
-				{
-					label: 'User Guide (No Code)',
-					items: [
-						{ label: 'Complete Workflow', slug: 'guides/workflow-overview' },
-						{ label: 'Create Account', slug: 'guides/account-creation' },
-						{ label: 'Create API Key (Mobile)', slug: 'guides/mobile-api-key-creation' },
-						{ label: 'WordPress Plugin Setup', slug: 'guides/wordpress-plugin-setup' },
-						{ label: 'App Settings Guide', slug: 'guides/app-settings' },
-							{ label: 'Early Access Device Setup', slug: 'guides/early-access-device-setup' },
-					],
-				},
-				{
-					label: 'Developer Guide',
-					items: [
-						{ label: 'Quick Start', slug: 'guides/quick-start' },
-						{ label: 'Code Samples', slug: 'guides/code-samples' },
-						{ label: 'WordPress Custom Events', slug: 'guides/wordpress-custom-events' },
-						{ label: 'Plugin Template Creation', slug: 'guides/plugin-template-creation' },
-						{ label: 'Hook Discovery', slug: 'guides/plugin-hooks-notifications' },
-						{ label: 'Copy-Paste Snippets', slug: 'guides/copy-paste-snippets' },
-					],
-				},
-				{
-					label: 'API Reference',
-					items: [{ label: 'Public Notify API', slug: 'reference/public-notify' }],
-				},
-				{
-					label: 'Contributing',
-					items: [{ label: 'Documentation', slug: 'guides/contributing' }],
-				},
-			],
-		}),
-	],
+  site: "https://docs.notificator-project.com",
+  integrations: [
+    starlight({
+      title: "Notificator Docs",
+      description:
+        "Documentation for Notificator, the WordPress plugin, mobile apps, connected devices, MQTT, and public API.",
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/notificator-project/",
+        },
+      ],
+      sidebar: [
+        { label: "Welcome", slug: "" },
+        {
+          label: "User Guide (No Code)",
+          items: [
+            { label: "Complete Workflow", slug: "guides/workflow-overview" },
+            { label: "Create Account", slug: "guides/account-creation" },
+            {
+              label: "Create API Key (Mobile)",
+              slug: "guides/mobile-api-key-creation",
+            },
+            {
+              label: "WordPress Plugin Setup",
+              slug: "guides/wordpress-plugin-setup",
+            },
+            { label: "App Settings Guide", slug: "guides/app-settings" },
+            {
+              label: "Early Access Device Setup",
+              slug: "guides/early-access-device-setup",
+            },
+          ],
+        },
+        {
+          label: "Developer Guide",
+          items: [
+            { label: "Quick Start", slug: "guides/quick-start" },
+            { label: "Code Samples", slug: "guides/code-samples" },
+            {
+              label: "WordPress Custom Events",
+              slug: "guides/wordpress-custom-events",
+            },
+            {
+              label: "Plugin Template Creation",
+              slug: "guides/plugin-template-creation",
+            },
+            {
+              label: "Hook Discovery",
+              slug: "guides/plugin-hooks-notifications",
+            },
+            {
+              label: "Copy-Paste Snippets",
+              slug: "guides/copy-paste-snippets",
+            },
+          ],
+        },
+        {
+          label: "API Reference",
+          items: [
+            { label: "Public Notify API", slug: "reference/public-notify" },
+          ],
+        },
+        {
+          label: "Contributing",
+          items: [{ label: "Documentation", slug: "guides/contributing" }],
+        },
+        {
+          label: "Project Links",
+          items: [
+            {
+              label: "Project Website",
+              link: "https://notificator-project.com/",
+            },
+            {
+              label: "Support",
+              link: "https://notificator-project.com/support/",
+            },
+            {
+              label: "Privacy Policy",
+              link: "https://notificator-project.com/privacy/",
+            },
+          ],
+        },
+      ],
+    }),
+  ],
 });

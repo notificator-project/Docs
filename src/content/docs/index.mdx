@@ -16,6 +16,8 @@ If you build integrations, start in **Developer Guide**.
 
 - Set up local WordPress dashboard notifications without an account or API key
 - Optionally connect mobile push and MQTT delivery
+- Use the Notificator mobile app on iOS and Android
+- Connect supported open-source Notificator devices
 - Configure app behavior and notification routing
 - Implement API calls with tested request examples
 
@@ -24,9 +26,9 @@ If you build integrations, start in **Developer Guide**.
 ### I am a non-technical user
 
 1. Read [Complete Workflow](/guides/workflow-overview/)
-2. Follow [Create Account](/guides/account-creation/)
-3. Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
-4. Finish [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+2. Follow [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+3. Optional: [Create an account](/guides/account-creation/) in the mobile app
+4. Optional: [Create an API key](/guides/mobile-api-key-creation/) for mobile push or MQTT
 
 :::note[No-code outcome]
 At the end of this path, WordPress events can appear in the dashboard without writing code. Connecting the app is optional and enables mobile push and MQTT.
@@ -43,9 +45,11 @@ At the end of this path, WordPress events can appear in the dashboard without wr
 If you already have a `public_client` key, jump directly to [Quick Start](/guides/quick-start/).
 :::
 
-## Core Endpoint
+## Public API Endpoint
 
 `POST https://api.notificator-project.com`
+
+This endpoint is for custom integrations using a `public_client` key. The WordPress plugin uses the separate Notificator WordPress service automatically; administrators do not need to call that service directly.
 
 ## Need Full Technical Overview?
 
@@ -54,3 +58,9 @@ Continue with [Quick Start](/guides/quick-start/), [Code Samples](/guides/code-s
 :::caution[Environment mismatch]
 Always verify that API keys, endpoint URLs, and expected payload fields match your target environment before testing.
 :::
+
+## Support and Privacy
+
+- [Get support](https://notificator-project.com/support/)
+- [Contact the project](https://notificator-project.com/contact/)
+- [Read the privacy policy](https://notificator-project.com/privacy/)

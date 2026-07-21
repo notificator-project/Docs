@@ -3,7 +3,7 @@ title: Plugin Template Creation
 description: Register reusable Notificator scenario templates from your plugin or theme.
 ---
 
-This guide is for plugin/theme developers who want prebuilt notification templates to appear inside Notificator Companion. Register the underlying event as well when you want accurate, scan-free discovery.
+This guide is for plugin and theme developers who want ready-made notification templates to appear inside Notificator. Register the underlying event as well when you want accurate, scan-free discovery.
 
 ## What a template gives you
 
@@ -90,8 +90,8 @@ If you do not want custom slug handling, set:
 
 ## Verification checklist
 
-1. Activate your plugin and Notificator Companion.
-2. Open **Notificator Companion → Notifications → Templates**.
+1. Activate your plugin and Notificator.
+2. Open **Notificator → Notifications → Templates**.
 3. Confirm your template appears in its plugin group.
 4. Apply template and save scenario.
 5. Trigger the hook and verify notification arrives.

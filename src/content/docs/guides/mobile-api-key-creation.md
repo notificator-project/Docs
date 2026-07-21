@@ -15,11 +15,11 @@ In the mobile app:
 
 1. Enter a descriptive name (for example: `wordpress-prod`, `staging`, `automation`).
 2. Select key type:
-	- `WordPress` -> `wordpress_server`
-	- `Public API` -> `public_client`
-	- `Internal` -> `internal_service`
+   - `WordPress` -> `wordpress_server`
+   - `Public API` -> `public_client`
+   - `Internal` -> `internal_service`
 3. Create the key.
-3. Copy it immediately and store it in your password manager.
+4. Copy it immediately and store it in your password manager.
 
 In the API Keys list, each key now shows:
 
@@ -37,6 +37,7 @@ Key format:
 - Use separate keys per environment/system.
 - Use the correct key type per endpoint.
 - Revoke compromised keys immediately.
+- A key is needed for mobile push, MQTT, connected devices, or direct API use—not for WordPress dashboard alerts.
 
 ## Endpoint compatibility by key type
 
