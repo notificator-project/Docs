@@ -74,7 +74,8 @@ description: One-sentence summary shown in previews/search
 
 - Keep guides action-oriented and step-by-step.
 - Prefer short sections with explicit outcomes.
-- Match all API examples to the production API domain: api.notificator-project.com.
+- Match public API examples to the production public endpoint: api.notificator-project.com.
+- Keep the WordPress delivery endpoint distinct: wpnotif.notificator-project.com is used by the plugin for optional remote delivery.
 - Keep user guide content and developer guide content clearly separated.
 - Validate every command and request payload you document.
 

@@ -21,6 +21,14 @@ Notificator works in dashboard-only mode immediately after activation. An API ke
 
 Discovery explains events in plain language and marks noisy, dynamic, registration-only, and observed candidates. Dynamic patterns cannot be selected until they resolve to an exact WordPress hook.
 
+When a scan finishes, Notificator refreshes the Overview status, discovered-event count, and Discover results immediately. You do not need to reload the page.
+
+### Scan after activating another plugin
+
+After the first successful scan, Notificator notices when an active plugin has not been scanned yet. The Overview step changes to **Discover events from _Plugin Name_** for one plugin or **Discover events from new plugins** for several. Run the suggested scan to include their events and templates; the step returns to **Discover site events** when the scan completes.
+
+This check compares active plugin names with the saved scan record. It does not inspect plugin files or start a scan during a normal admin page load.
+
 The per-plugin event limit in Settings applies separately to each plugin, so the total number found can be much higher. Scans run in bounded background batches, reuse unchanged results, and keep the previous discovery snapshot available until the new scan completes.
 
 ## Create a notification
@@ -57,6 +65,12 @@ Dashboard is enabled by default. Mobile push and MQTT remain unavailable until a
 5. Edit a notification and enable Mobile push, MQTT, or both.
 
 You can store several API keys and switch each one on or off. If every key is off, the plugin returns to dashboard-only delivery without disabling event setup.
+
+### WordPress delivery service
+
+The plugin contacts `https://wpnotif.notificator-project.com` only when an administrator tests an API key, an enabled notification requests Mobile push or MQTT delivery, or a configured website monitor is sent to the service. Dashboard-only notifications do not contact this endpoint.
+
+Requests can include the enabled API key, request-signing metadata, site details, notification content, selected delivery channels, rendered placeholders, and configured monitor details. Avoid placing unnecessary personal or sensitive information in remotely delivered notification text. See the [Notificator privacy policy](https://notificator-project.com/privacy/) for more information.
 
 ## Review Activity
 

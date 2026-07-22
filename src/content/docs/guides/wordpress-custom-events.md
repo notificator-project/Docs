@@ -66,6 +66,8 @@ do_action( 'acme_order_flagged', $order_id, $reason );
 
 Administrators can now find **Order flagged** in **Notificator → Notifications → Discover events** and create a Dashboard, Mobile push, or MQTT notification.
 
+Explicitly registered events appear immediately and do not require source-code discovery. After activating a new integration, Overview may still recommend a plugin scan so Notificator can discover any additional unregistered hooks or templates in that plugin; the registered event is already available while that scan is pending.
+
 :::note[Public PHP API names]
 The WordPress integration functions and hooks use the `notificator_companion_` prefix. Use these identifiers exactly as documented even though the public plugin name is **Notificator**.
 :::
@@ -139,7 +141,7 @@ Registration makes an event discoverable but does not create a notification. A t
 
 1. Activate your plugin and Notificator 1.1 or newer.
 2. Open **Notificator → Developer** and confirm the event count and name.
-3. Open **Notifications → Discover events**; no scan is required.
+3. Open **Notifications → Discover events**; the registered event is available without a scan.
 4. Create a Dashboard notification for the event.
 5. Emit the action in a controlled test.
 6. Confirm **Dashboard delivered** in Activity.

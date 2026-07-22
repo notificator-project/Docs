@@ -23,6 +23,10 @@ Discovery ranks likely emitted events above callback registrations and routine l
 
 The scan is designed for production sites: it processes plugins in resumable background batches, prevents overlapping jobs, bounds work per plugin, and reuses results for unchanged files. Start with active plugins only. Under **Notificator → Settings → Event discovery**, adjust the per-plugin event limit only when you need a wider result set; it is not a site-wide total.
 
+After a successful scan, Notificator stores a fingerprint for each plugin it covered. If another plugin is later activated without a saved fingerprint, Overview recommends a new scan and identifies the plugin directly. Checking for this state only compares the active plugin list with saved metadata; it does not read plugin source files or add scan work to ordinary admin requests.
+
+Scan completion refreshes Overview and the Discover inbox in place, including event cards, filters, and totals.
+
 ## Observation mode
 
 Static analysis cannot prove that an event runs on your site. Use **Observe for 10 min** to record safe runtime metadata:
