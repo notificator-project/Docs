@@ -106,23 +106,49 @@ Keep published argument order stable. Add new optional arguments at the end.
 
 ## Object properties
 
-If an argument is an object, explicitly describe safe getter methods:
+If an argument is an object, describe only the safe fields that administrators may use:
 
 ```php
 'arg_names' => array( 'order' ),
 'properties' => array(
     'order' => array(
         array(
-            'name'   => 'total',
-            'label'  => 'Order total',
-            'type'   => 'number',
-            'method' => 'get_total',
+            'name'  => 'total',
+            'label' => 'Order total',
+            'type'  => 'number',
         ),
     ),
 ),
 ```
 
-Notificator can then use `order.total` in a condition or supported placeholder without exposing the entire object.
+Notificator can then offer `order.total` in conditions and supported placeholders without exposing the entire object. Public object properties are read directly. Saved event or notification metadata never selects or invokes an object method.
+
+For a private or protected value exposed through a getter, resolve the field in trusted PHP code:
+
+```php
+add_filter(
+    'notificator_companion_resolve_object_property',
+    function ( $value, $runtime_object, $arg_name, $property ) {
+        if ( null !== $value ) {
+            return $value;
+        }
+
+        if (
+            ! $runtime_object instanceof Acme_Order ||
+            'order' !== $arg_name ||
+            'total' !== $property
+        ) {
+            return null;
+        }
+
+        return $runtime_object->get_total();
+    },
+    10,
+    4
+);
+```
+
+Always validate the object class, argument name, and property name before calling a getter. This keeps method selection in integration code rather than user-editable configuration.
 
 ## Privacy and performance
 
