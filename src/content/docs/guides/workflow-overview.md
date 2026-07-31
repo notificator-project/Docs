@@ -38,6 +38,10 @@ Create an account and WordPress API key only if you want mobile push or MQTT.
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
+MQTT also requires your own HiveMQ Cloud cluster. Notificator does not provide a
+default broker. Configure the same cluster and topic prefix in WordPress and on
+the device by following [MQTT Broker Setup](/guides/mqtt-broker-setup/).
+
 :::caution[Key type matters]
 Use `wordpress_server` for the WordPress plugin.
 Use `public_client` for the `public-notify` endpoint.
@@ -66,15 +70,15 @@ Tune notifications, security, and home widgets from mobile settings.
 
 Continue with [App Settings Guide](/guides/app-settings/).
 
-## Step 6: Configure an Early Access device (optional)
+## Step 6: Configure Notificator Base (optional)
 
-If you use the physical Early Access ESP32 device:
+If you use a physical Notificator Base device:
 
 - Add the device in mobile app Devices.
 - Set idle theme (Clock, Weather, or Weather & Clock).
 - Configure weather location/timezone as needed.
 
-Continue with [Early Access Device Setup](/guides/early-access-device-setup/).
+Continue with [Notificator Base Setup](/guides/notificator-base-setup/).
 
 ## Step 7: Validate external API flow
 

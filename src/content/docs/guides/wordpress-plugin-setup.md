@@ -52,9 +52,11 @@ In the create modal:
 | ----------- | ----------------- | --------------------------------------------------------------- |
 | Dashboard   | No                | Records the event in Activity and can display a wp-admin toast. |
 | Mobile push | Yes               | Sends a notification to connected phones.                       |
-| MQTT        | Yes               | Publishes to connected IoT devices.                             |
+| MQTT        | Yes               | Publishes through your own configured HiveMQ Cloud cluster.     |
 
-Dashboard is enabled by default. Mobile push and MQTT remain unavailable until at least one saved API key is enabled.
+Dashboard is enabled by default. Mobile push remains unavailable until at least
+one saved API key is enabled. MQTT additionally requires a complete user-owned
+broker configuration; Notificator does not provide a default MQTT broker.
 
 ## Connect mobile push or MQTT (optional)
 
@@ -65,6 +67,13 @@ Dashboard is enabled by default. Mobile push and MQTT remain unavailable until a
 5. Edit a notification and enable Mobile push, MQTT, or both.
 
 You can store several API keys and switch each one on or off. If every key is off, the plugin returns to dashboard-only delivery without disabling event setup.
+
+For MQTT, also connect the HiveMQ Cloud cluster used by your device under
+**Settings → Connections → MQTT broker**. WordPress and the device must use the
+same cluster and topic prefix. The current release supports HiveMQ Cloud only;
+HiveMQ offers a Serverless free plan for getting started. Follow
+[MQTT Broker Setup](/guides/mqtt-broker-setup/) for account, cluster URL, and
+credential instructions.
 
 ### WordPress delivery service
 
@@ -113,6 +122,7 @@ Deleting the plugin through WordPress removes its settings, notifications, logs,
 - Ensure at least one key is switched on.
 - Test the key from its Settings row.
 - For mobile push, confirm notifications are enabled for the device.
+- For MQTT, connect your own HiveMQ Cloud cluster and complete its broker test.
 
 ## Next steps
 

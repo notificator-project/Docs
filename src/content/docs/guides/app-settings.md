@@ -1,6 +1,6 @@
 ---
 title: App Settings Guide
-description: Configure profile, notifications, API keys, and personalization options in the mobile app.
+description: Configure profile, notifications, device connectivity, API keys, and personalization options in the mobile app.
 ---
 
 Use this page as a practical map of mobile settings after onboarding.
@@ -39,6 +39,27 @@ Each active key card also shows:
 - Last used timestamp
 - Allowed domains count
 
+## Device connection
+
+Notificator does not provide a default MQTT broker. To send commands to a
+Notificator Base device:
+
+1. Open **Account → Device connection**.
+2. Expand **HiveMQ Cloud**.
+3. Enter the hostname and mobile publisher credential from your HiveMQ Cloud
+   cluster.
+4. Use the same topic prefix configured in WordPress and on the device. New
+   setups default to `notificator-project`.
+5. Save the connection.
+
+The connection is stored only in the operating system's secure credential store
+on that phone. It is sent transiently to the API when delivering a command and
+is never stored in Supabase. Use **Remove** to delete it, or **Clear Data & Sign
+Out** to remove it together with the other local account data.
+
+See [MQTT Broker Setup](/guides/mqtt-broker-setup/) for HiveMQ Cloud setup and
+credential permissions.
+
 ## Home and UI preferences
 
 Common settings include:
@@ -61,9 +82,12 @@ If notifications do not arrive:
 2. Confirm push toggle for current device.
 3. Confirm user is signed into correct account.
 4. Send a test notification from plugin/API.
+5. For device commands, confirm **Account → Device connection** is configured
+   and uses the same cluster and topic prefix as the device.
 
 ## Related guides
 
 - [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
 - [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+- [MQTT Broker Setup](/guides/mqtt-broker-setup/)
 - [Quick Start](/guides/quick-start/)

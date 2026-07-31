@@ -32,10 +32,18 @@ export default defineConfig({
               label: "WordPress Plugin Setup",
               slug: "guides/wordpress-plugin-setup",
             },
+            {
+              label: "MQTT Broker Setup",
+              slug: "guides/mqtt-broker-setup",
+            },
             { label: "App Settings Guide", slug: "guides/app-settings" },
             {
-              label: "Early Access Device Setup",
-              slug: "guides/early-access-device-setup",
+              label: "Notificator Base Setup",
+              slug: "guides/notificator-base-setup",
+            },
+            {
+              label: "Firmware Updates",
+              slug: "guides/firmware-updates",
             },
           ],
         },
