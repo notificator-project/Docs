@@ -7,7 +7,8 @@ Notificator does not provide a shared or default MQTT broker. MQTT delivery is
 optional and currently requires your own HiveMQ Cloud cluster.
 
 Dashboard alerts do not need an account, API key, or MQTT broker. Mobile push
-requires a Notificator API key but does not require MQTT.
+and account email alerts do not require MQTT; email delivery is enabled or
+disabled from the mobile app.
 
 :::note[Current provider support]
 HiveMQ Cloud is the only MQTT provider supported by the current Notificator

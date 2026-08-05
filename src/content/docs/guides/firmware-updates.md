@@ -42,16 +42,21 @@ board.
 
 Current public releases use independent model tags and channels:
 
-- **Base 1.2.1**: stable channel, tagged `base-v1.2.1`.
-- **Touch 0.9.1**: preview channel, tagged `touch-v0.9.1`.
+- **Base 1.2.2**: stable channel, tagged `base-v1.2.2`.
+- **Touch 0.9.3**: preview channel, tagged `touch-v0.9.3`.
 
 The browser installer lists both models and checks the connected ESP32 family
 before flashing. Always choose the entry matching the physical board.
 
+Base 1.2.2 and Touch 0.9.3 publish retained presence heartbeats and register a
+retained MQTT Last Will. If power or connectivity disappears unexpectedly,
+HiveMQ can publish the offline state without waiting for the device to send a
+final message. Presence normally changes within roughly 30–60 seconds.
+
 ## Older devices
 
 Older firmware and partition layouts are not part of the current OTA
-compatibility path. Flash those devices once using USB or the forthcoming web
+compatibility path. Flash those devices once using USB or the firmware web
 installer. The complete installer writes the current firmware and dual-slot
 partition table, after which signed OTA updates are available.
 

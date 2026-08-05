@@ -19,7 +19,9 @@ Check these first:
 
 - Device push enabled for current device.
 - Notification permissions allowed by OS.
-- Email notification preference as desired.
+- Email notification preference as desired. This is an account-level delivery
+  preference controlled in the app, separate from the mobile push permission
+  granted by iOS or Android.
 
 ## API keys management
 
@@ -98,6 +100,10 @@ If notifications do not arrive:
 4. Send a test notification from plugin/API.
 5. For device commands, confirm **Account → Device connection** is configured
    and uses the same cluster and topic prefix as the device.
+
+Email alerts do not require MQTT. Confirm the email preference is enabled and
+that the verified address on the account is correct. Mobile push and email can
+be enabled independently.
 
 ## Related guides
 

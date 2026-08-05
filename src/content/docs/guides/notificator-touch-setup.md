@@ -4,7 +4,7 @@ description: Install and configure the Notificator Touch 3.49 preview, including
 ---
 
 Notificator Touch 3.49 is the touchscreen model for the Waveshare ESP32-S3
-Touch LCD 3.49. Firmware `0.9.1` is a preview release while its interaction
+Touch LCD 3.49. Firmware `0.9.3` is a preview release while its interaction
 design and update flow are validated before version 1.0.
 
 :::caution[Use the matching firmware]
@@ -109,6 +109,8 @@ the device.
 
 - **No setup portal:** join `WPNOTIF-<ID>` and manually open `192.168.4.1`.
 - **No on-screen keyboard:** ensure the installed model is Touch 0.9.1 or newer.
+- **Mark all read has no effect:** install Touch 0.9.3 or newer, then retry the
+  command from the app while the device is connected to MQTT.
 - **Commands do not arrive:** confirm the phone, device, and WordPress plugin
   use the same cluster and topic prefix.
 - **Weather is wrong:** review timezone, city, or coordinates in the mobile app.

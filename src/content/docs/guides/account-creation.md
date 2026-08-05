@@ -17,7 +17,7 @@ description: Create and verify your Notificator account from the mobile app.
 5. Sign in and open the Profile or Settings tab.
 
 :::note[Optional for WordPress dashboard alerts]
-You do not need an account to configure the WordPress plugin, discover events, create notifications, or receive dashboard alerts. Create an account when you want mobile push, MQTT, or connected-device delivery.
+You do not need an account to configure the WordPress plugin, discover events, create notifications, or receive dashboard alerts. Create an account when you want mobile push, optional email alerts, MQTT, or connected-device delivery.
 :::
 
 ## Recommended first checks
