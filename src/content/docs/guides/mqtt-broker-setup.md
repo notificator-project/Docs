@@ -144,6 +144,13 @@ Open **Account → Device connection** and save the HiveMQ Cloud publisher
 credential for that phone. The connection is intentionally not restored from
 Supabase or copied from WordPress.
 
+### The app says Connection refused: Not authorized
+
+HiveMQ rejected the username or password before the command reached the
+device. Re-enter the mobile publisher credential under **Account → Device
+connection**, save it, and retry the command. This applies to ordinary device
+settings and OTA requests.
+
 ## Current provider support
 
 The current WordPress integration validates HiveMQ Cloud hostnames and its
@@ -152,3 +159,8 @@ but is not part of the current configuration.
 
 HiveMQ Cloud is an independent third-party service. Notificator is not affiliated
 with or endorsed by HiveMQ.
+
+## Device guides
+
+- [Notificator Base Setup](/guides/notificator-base-setup/)
+- [Notificator Touch Setup](/guides/notificator-touch-setup/)

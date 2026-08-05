@@ -70,15 +70,17 @@ Tune notifications, security, and home widgets from mobile settings.
 
 Continue with [App Settings Guide](/guides/app-settings/).
 
-## Step 6: Configure Notificator Base (optional)
+## Step 6: Configure a Notificator device (optional)
 
-If you use a physical Notificator Base device:
+If you use a physical Notificator device:
 
-- Add the device in mobile app Devices.
+- Choose Base or Touch when adding the device in the mobile app.
 - Set idle theme (Clock, Weather, or Weather & Clock).
 - Configure weather location/timezone as needed.
+- Adjust the model's supported display and sound controls.
 
-Continue with [Notificator Base Setup](/guides/notificator-base-setup/).
+Continue with [Notificator Base Setup](/guides/notificator-base-setup/) or
+[Notificator Touch Setup](/guides/notificator-touch-setup/).
 
 ## Step 7: Validate external API flow
 

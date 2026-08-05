@@ -101,15 +101,15 @@ Why these fields are used:
 ### Easy ways to get lat/lon
 
 1. Google Maps
-	- Open maps, long-press your location.
-	- Copy the coordinate pair shown (for example `37.9838, 23.7275`).
+   - Open maps, long-press your location.
+   - Copy the coordinate pair shown (for example `37.9838, 23.7275`).
 
 2. OpenStreetMap
-	- Open your location and click Share/Query features.
-	- Read latitude and longitude from the location details.
+   - Open your location and click Share/Query features.
+   - Read latitude and longitude from the location details.
 
 3. iPhone/Android map apps
-	- Drop a pin and copy coordinates from pin details.
+   - Drop a pin and copy coordinates from pin details.
 
 Tips:
 
@@ -123,6 +123,10 @@ When you save, the app sends device commands to apply:
 
 - idle theme
 - weather configuration (if set)
+- display brightness
+
+Brightness is stored on the Base device and can be changed later from the same
+mobile device editor. Sound volume is available only on Notificator Touch.
 
 If save succeeds but device screen does not change immediately, verify the device is online and not paused.
 
@@ -171,3 +175,4 @@ over the air.
 - [App Settings Guide](/guides/app-settings/)
 - [Complete Workflow](/guides/workflow-overview/)
 - [MQTT Broker Setup](/guides/mqtt-broker-setup/)
+- [Notificator Touch Setup](/guides/notificator-touch-setup/)

@@ -27,9 +27,9 @@ From Profile -> API Keys:
 
 - Create separate keys per integration.
 - Select key type when creating a key:
-	- `WordPress` for plugin/server workflow
-	- `Public API` for `public-notify`
-	- `Internal` for trusted backend automation
+  - `WordPress` for plugin/server workflow
+  - `Public API` for `public-notify`
+  - `Internal` for trusted backend automation
 - Rename keys with clear environment labels.
 - Revoke old or unused keys.
 
@@ -42,7 +42,7 @@ Each active key card also shows:
 ## Device connection
 
 Notificator does not provide a default MQTT broker. To send commands to a
-Notificator Base device:
+Notificator Base or Touch device:
 
 1. Open **Account → Device connection**.
 2. Expand **HiveMQ Cloud**.
@@ -59,6 +59,20 @@ Out** to remove it together with the other local account data.
 
 See [MQTT Broker Setup](/guides/mqtt-broker-setup/) for HiveMQ Cloud setup and
 credential permissions.
+
+## Device controls
+
+Open a saved device to configure the controls supported by that model:
+
+- **Notificator Base:** idle mode, weather location and timezone, and display
+  brightness.
+- **Notificator Touch:** idle mode, weather location and timezone, display
+  brightness, and sound volume.
+
+The app sends these controls through the HiveMQ connection stored on the phone.
+If a save succeeds but live settings cannot be delivered, verify the device is
+online and recheck the publisher username and password under **Device
+connection**.
 
 ## Home and UI preferences
 
@@ -90,4 +104,6 @@ If notifications do not arrive:
 - [Create API Key (Mobile)](/guides/mobile-api-key-creation/)
 - [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
 - [MQTT Broker Setup](/guides/mqtt-broker-setup/)
+- [Notificator Base Setup](/guides/notificator-base-setup/)
+- [Notificator Touch Setup](/guides/notificator-touch-setup/)
 - [Quick Start](/guides/quick-start/)

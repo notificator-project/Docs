@@ -42,6 +42,10 @@ export default defineConfig({
               slug: "guides/notificator-base-setup",
             },
             {
+              label: "Notificator Touch Setup",
+              slug: "guides/notificator-touch-setup",
+            },
+            {
               label: "Firmware Updates",
               slug: "guides/firmware-updates",
             },

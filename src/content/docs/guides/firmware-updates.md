@@ -9,6 +9,7 @@ Each hardware model has a stable identity, its own source directory, and
 independent release entries:
 
 - **Notificator Base**: `notificator_base`
+- **Notificator Touch 3.49**: `notificator_touch_349` (preview)
 - **Notificator Matter**: `notificator_matter` (planned)
 
 Keeping models together makes project-wide maintenance easier while preventing
@@ -39,6 +40,14 @@ WordPress plugin, MQTT broker, or device.
 The device rejects arbitrary download URLs and releases for another model or
 board.
 
+Current public releases use independent model tags and channels:
+
+- **Base 1.2.1**: stable channel, tagged `base-v1.2.1`.
+- **Touch 0.9.1**: preview channel, tagged `touch-v0.9.1`.
+
+The browser installer lists both models and checks the connected ESP32 family
+before flashing. Always choose the entry matching the physical board.
+
 ## Older devices
 
 Older firmware and partition layouts are not part of the current OTA
@@ -49,5 +58,6 @@ partition table, after which signed OTA updates are available.
 ## Related
 
 - [Notificator Base Setup](/guides/notificator-base-setup/)
+- [Notificator Touch Setup](/guides/notificator-touch-setup/)
 - [MQTT Broker Setup](/guides/mqtt-broker-setup/)
 - [Complete Workflow](/guides/workflow-overview/)
