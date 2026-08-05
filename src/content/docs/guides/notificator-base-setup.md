@@ -49,7 +49,8 @@ the device itself.
 In the mobile app:
 
 1. Open **Account → Device connection** and save the HiveMQ Cloud hostname,
-   mobile publisher credential, and topic prefix.
+   mobile publisher credential, and topic prefix. Use **Test connection** before
+   saving to confirm the unsaved details.
 2. Open Devices.
 3. Tap Add Device (or edit an existing device).
 4. Set Device Type to Notificator Base.
@@ -78,44 +79,28 @@ Weather & Clock alternates on-device every 2.5 seconds:
 
 If you use Weather or Weather & Clock:
 
-- Set city/timezone, or
-- Set manual latitude/longitude.
+- Enter a city, area, or postal code.
+- Select the intended result from the location search.
+- Review the timezone selected for that place.
+- Save to send the resolved location to the device.
 
-If coordinates are provided, latitude and longitude must both be valid.
+The app resolves latitude and longitude internally. It does not request the
+phone's continuous or background location. Place search is provided by
+Open-Meteo using GeoNames location data.
 
-### Weather fields explained
+### Advanced manual coordinates
 
-- `Latitude (lat)`: north/south position on Earth.
-  - Range: `-90` to `90`
-  - Example: Athens is about `37.9838`
-- `Longitude (lon)`: east/west position on Earth.
-  - Range: `-180` to `180`
-  - Example: Athens is about `23.7275`
+Most users should not need coordinates. Expand **Advanced location** only when
+the search cannot distinguish the intended place or you need weather for a
+specific remote point.
 
-Why these fields are used:
+- Latitude ranges from `-90` to `90`.
+- Longitude ranges from `-180` to `180`.
+- Both values are required when either is entered.
+- Use decimal format with `.` as the decimal separator.
 
-- They let the device fetch weather for the exact location you want.
-- They are more precise than city names when multiple places share similar names.
-- They keep weather stable even if network geo/IP detection is inaccurate.
-
-### Easy ways to get lat/lon
-
-1. Google Maps
-   - Open maps, long-press your location.
-   - Copy the coordinate pair shown (for example `37.9838, 23.7275`).
-
-2. OpenStreetMap
-   - Open your location and click Share/Query features.
-   - Read latitude and longitude from the location details.
-
-3. iPhone/Android map apps
-   - Drop a pin and copy coordinates from pin details.
-
-Tips:
-
-- Use decimal format (not degrees/minutes/seconds).
-- Use `.` as decimal separator.
-- Paste both values together in app settings (lat and lon).
+For example, Athens is approximately latitude `37.9838` and longitude
+`23.7275`. Selecting Athens through search fills these values automatically.
 
 ## 5. Send settings to device
 
@@ -167,7 +152,8 @@ over the air.
 - Command failed: ensure your account has an active WordPress/Internal API key
   and **Account → Device connection** contains the correct HiveMQ details.
 - No device response: verify device ID matches firmware device ID exactly.
-- Weather not showing: verify Wi-Fi connectivity and timezone/coordinates.
+- Weather not showing: verify Wi-Fi connectivity, search and select the weather
+  location again, and review the timezone.
 - Theme not persisting: confirm DB migration for idle_theme is applied.
 
 ## Related

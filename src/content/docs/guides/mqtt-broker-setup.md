@@ -84,13 +84,19 @@ added to an HTTPS delivery request only in memory.
 2. Expand **HiveMQ Cloud**.
 3. Enter the cluster hostname, mobile publisher username, password, and the
    same topic prefix used by WordPress and the device.
-4. Select **Save connection**.
+4. Select **Test connection**.
+5. When the test succeeds, select **Save connection**.
 
 The mobile app stores this connection in the phone's operating-system secure
 credential store. It supplies the details only in memory when sending a device
 command through an authenticated HTTPS request. MQTT credentials are not saved
 to the Notificator database or synced between phones, so configure each phone
 that needs to control devices.
+
+Testing does not save the form or publish a message. The authenticated API
+validates the HiveMQ Cloud endpoint, opens a short-lived secure WebSocket
+connection, and closes it immediately. The entered credentials are used only
+for that request and are not written to Supabase or API logs.
 
 ## Configure the device
 
@@ -151,6 +157,17 @@ HiveMQ rejected the username or password before the command reached the
 device. Re-enter the mobile publisher credential under **Account → Device
 connection**, save it, and retry the command. This applies to ordinary device
 settings and OTA requests.
+
+### The mobile connection test fails
+
+- Confirm the hostname ends in `.hivemq.cloud` and does not include `https://`,
+  a port, or `/mqtt`.
+- Check the mobile publisher username and password in HiveMQ Access Management.
+- Wait briefly after creating or rotating a HiveMQ credential, then test again.
+- Make sure the account has an active WordPress or Internal API key for the
+  authenticated request.
+- A successful test confirms broker authentication only. The device must still
+  use the same cluster and topic prefix to receive commands.
 
 ## Current provider support
 

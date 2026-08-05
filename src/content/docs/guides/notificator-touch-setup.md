@@ -65,8 +65,10 @@ lowercase value avoids confusion when checking MQTT topics.
 ## 4. Configure the screen
 
 The device supports **Clock**, **Weather & Clock**, and **Weather** idle modes.
-Set the timezone and weather location in the device editor, then save to send
-the changes over MQTT.
+Enter a city, area, or postal code in the device editor, choose the intended
+match, review the timezone, then save to send the resolved weather location
+over MQTT. Latitude and longitude are handled internally; manual values remain
+available under **Advanced location** when needed.
 
 The same screen also provides sliders for:
 
@@ -113,7 +115,9 @@ the device.
   command from the app while the device is connected to MQTT.
 - **Commands do not arrive:** confirm the phone, device, and WordPress plugin
   use the same cluster and topic prefix.
-- **Weather is wrong:** review timezone, city, or coordinates in the mobile app.
+- **Weather is wrong:** search for the location again, select the intended
+  regional match, and review the timezone. Use manual coordinates only when the
+  place search cannot identify the required location.
 - **OTA is not offered:** check that the device type is Touch and the preview
   channel is available.
 - **Recovery required:** reinstall the complete Touch factory image through

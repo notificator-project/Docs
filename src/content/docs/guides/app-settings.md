@@ -52,12 +52,19 @@ Notificator Base or Touch device:
    cluster.
 4. Use the same topic prefix configured in WordPress and on the device. New
    setups default to `notificator-project`.
-5. Save the connection.
+5. Select **Test connection**. A successful result confirms the cluster and
+   credentials before anything is saved.
+6. Select **Save connection**.
 
 The connection is stored only in the operating system's secure credential store
 on that phone. It is sent transiently to the API when delivering a command and
 is never stored in Supabase. Use **Remove** to delete it, or **Clear Data & Sign
 Out** to remove it together with the other local account data.
+
+The connection test uses the values currently shown in the form. It opens a
+short-lived secure WebSocket connection through the authenticated Notificator
+API, then disconnects. The test does not save the values, publish an alert, or
+require an existing device.
 
 See [MQTT Broker Setup](/guides/mqtt-broker-setup/) for HiveMQ Cloud setup and
 credential permissions.
@@ -75,6 +82,12 @@ The app sends these controls through the HiveMQ connection stored on the phone.
 If a save succeeds but live settings cannot be delivered, verify the device is
 online and recheck the publisher username and password under **Device
 connection**.
+
+For weather, enter a city, area, or postal code and select the intended match.
+The app fills the coordinates internally so users do not normally need to find
+or type latitude and longitude. Manual coordinates remain under **Advanced
+location** for unusual or ambiguous places. Location search uses Open-Meteo
+with GeoNames place data and does not request continuous device location.
 
 ## Home and UI preferences
 
@@ -99,7 +112,8 @@ If notifications do not arrive:
 3. Confirm user is signed into correct account.
 4. Send a test notification from plugin/API.
 5. For device commands, confirm **Account → Device connection** is configured
-   and uses the same cluster and topic prefix as the device.
+   and uses the same cluster and topic prefix as the device. Use **Test
+   connection** to check the unsaved hostname, username, and password first.
 
 Email alerts do not require MQTT. Confirm the email preference is enabled and
 that the verified address on the account is correct. Mobile push and email can
