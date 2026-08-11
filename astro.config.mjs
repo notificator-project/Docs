@@ -29,10 +29,6 @@ export default defineConfig({
               slug: "guides/mobile-api-key-creation",
             },
             {
-              label: "WordPress Plugin Setup",
-              slug: "guides/wordpress-plugin-setup",
-            },
-            {
               label: "MQTT Broker Setup",
               slug: "guides/mqtt-broker-setup",
             },
@@ -52,12 +48,21 @@ export default defineConfig({
           ],
         },
         {
-          label: "Developer Guide",
+          label: "Platform Integrations",
           items: [
             {
-              label: "Strapi Extension Setup",
+              label: "WordPress Plugin",
+              slug: "guides/wordpress-plugin-setup",
+            },
+            {
+              label: "Strapi Extension",
               slug: "guides/strapi-extension-setup",
             },
+          ],
+        },
+        {
+          label: "Developer Guide",
+          items: [
             { label: "Quick Start", slug: "guides/quick-start" },
             { label: "Code Samples", slug: "guides/code-samples" },
             {
