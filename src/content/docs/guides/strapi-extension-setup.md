@@ -112,9 +112,8 @@ Create a separate API key for each Strapi environment:
 1. Open the Notificator mobile app.
 2. Go to **Account → API Keys → Create API Key**.
 3. Give the key a name such as `strapi-production`.
-4. Select **WordPress** (`wordpress_server`). The current Strapi extension uses
-   the same signed server-delivery endpoint. An `internal_service` key is also
-   supported; do not use a `public_client` key.
+4. Select **Strapi Extension** (`strapi_server`). An `internal_service` key is
+   also supported; do not use a `public_client` key.
 5. Copy the key immediately and store it in the Strapi server environment.
 
 Add the smallest connected configuration to `.env`:

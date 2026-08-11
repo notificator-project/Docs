@@ -30,7 +30,7 @@ Provide exactly one API key using any of these headers:
 Key type policy:
 
 - Allowed: `public_client`, `internal_service`
-- Rejected: `wordpress_server`
+- Rejected: `wordpress_server`, `strapi_server`
 
 Domain policy:
 

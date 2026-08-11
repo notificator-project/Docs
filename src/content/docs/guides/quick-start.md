@@ -17,10 +17,10 @@ Use one of the following:
 
 Use a key with type `public_client` (or `internal_service`).
 
-`wordpress_server` keys are rejected by `public-notify`.
+Server integration keys (`wordpress_server` and `strapi_server`) are rejected by `public-notify`.
 
 :::caution[Most common error]
-If you send a `wordpress_server` key to `public-notify`, authentication fails even if the key format is correct.
+If you send a `wordpress_server` or `strapi_server` key to `public-notify`, authentication fails even if the key format is correct.
 :::
 
 ## 2. Send a test request

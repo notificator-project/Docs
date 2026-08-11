@@ -52,8 +52,8 @@ Create an account and server API key only if you want the Notificator inbox,
 mobile push, email, or MQTT.
 
 - Sign in to the mobile app.
-- Create a `WordPress` (`wordpress_server`) API key. The current WordPress and
-  Strapi integrations both use this signed server key type.
+- Create a `WordPress` (`wordpress_server`) key for WordPress.
+- Create a `Strapi Extension` (`strapi_server`) key for Strapi.
 - In WordPress, add and enable the key under **Notificator → Settings → Remote delivery**.
 - In Strapi, store it as `NOTIFICATOR_API_KEY` and restart the server.
 - Enable the remote channels required by each notification or rule.
@@ -66,7 +66,7 @@ Strapi and on the device by following [MQTT Broker Setup](/guides/mqtt-broker-se
 
 :::caution[Key type matters]
 Use `wordpress_server` for the WordPress plugin.
-The current Strapi extension also uses `wordpress_server` for its signed server flow.
+Use `strapi_server` for the Strapi extension.
 Use `public_client` for the `public-notify` endpoint.
 :::
 

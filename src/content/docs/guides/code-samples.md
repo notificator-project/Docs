@@ -5,7 +5,7 @@ description: Ready-to-use examples for JavaScript, TypeScript, PHP, and Postman.
 
 Use a `public_client` API key for the `public-notify` endpoint shown below.
 
-`wordpress_server` keys are for `wpnotif-api` and will be rejected here.
+`wordpress_server` and `strapi_server` keys are for signed integrations and will be rejected here.
 
 :::tip[Production endpoint]
 Use `https://api.notificator-project.com` as the canonical public endpoint.

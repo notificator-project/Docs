@@ -16,6 +16,7 @@ In the mobile app:
 1. Enter a descriptive name (for example: `wordpress-prod`, `staging`, `automation`).
 2. Select key type:
    - `WordPress` -> `wordpress_server`
+   - `Strapi Extension` -> `strapi_server`
    - `Public API` -> `public_client`
    - `Internal` -> `internal_service`
 3. Create the key.
@@ -41,7 +42,8 @@ Key format:
 
 ## Endpoint compatibility by key type
 
-- `wordpress_server`: use with `wpnotif-api` (current WordPress and Strapi signed server flow)
+- `wordpress_server`: use with the WordPress plugin signed server flow
+- `strapi_server`: use with the Strapi extension signed server flow
 - `public_client`: use with `public-notify` (external/public integrations)
 - `internal_service`: allowed on both endpoints
 
@@ -59,5 +61,5 @@ Also supported:
 ## Next step
 
 - For `wordpress_server` keys: [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
-- For Strapi server keys: [Strapi Extension Setup](/guides/strapi-extension-setup/)
+- For `strapi_server` keys: [Strapi Extension Setup](/guides/strapi-extension-setup/)
 - For `public_client` keys: [Quick Start](/guides/quick-start/)
