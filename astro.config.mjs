@@ -9,7 +9,7 @@ export default defineConfig({
     starlight({
       title: "Notificator Docs",
       description:
-        "Documentation for Notificator, the WordPress plugin, mobile apps, connected devices, MQTT, and public API.",
+        "Documentation for Notificator, WordPress and Strapi integrations, mobile apps, connected devices, MQTT, and the public API.",
       social: [
         {
           icon: "github",
@@ -54,6 +54,10 @@ export default defineConfig({
         {
           label: "Developer Guide",
           items: [
+            {
+              label: "Strapi Extension Setup",
+              slug: "guides/strapi-extension-setup",
+            },
             { label: "Quick Start", slug: "guides/quick-start" },
             { label: "Code Samples", slug: "guides/code-samples" },
             {

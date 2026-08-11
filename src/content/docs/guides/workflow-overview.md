@@ -1,6 +1,6 @@
 ---
 title: Complete Workflow
-description: End-to-end setup from account creation to WordPress integration and app configuration.
+description: End-to-end setup for WordPress or Strapi, connected delivery, app configuration, and devices.
 ---
 
 This guide connects all setup pieces in the recommended order.
@@ -9,7 +9,11 @@ This guide connects all setup pieces in the recommended order.
 This page is optimized for operational setup. If you need direct API testing and payload examples, use [Quick Start](/guides/quick-start/) in the Developer Guide.
 :::
 
-## Step 1: Install the WordPress plugin
+## Step 1: Choose the source integration
+
+Use the integration that owns the events you want to watch.
+
+### WordPress
 
 Install Notificator and open **Notificator → Overview**.
 
@@ -19,31 +23,50 @@ Install Notificator and open **Notificator → Overview**.
 
 No Notificator account or API key is needed for dashboard notifications. Continue with [WordPress Plugin Setup](/guides/wordpress-plugin-setup/).
 
-## Step 2: Verify dashboard delivery
+### Strapi
 
-Trigger the event and check **Notificator → Activity**. Dashboard-only events appear as delivered and can show a toast in wp-admin.
+Install `@notificator-project/strapi-extension`, register it in
+`config/plugins.ts`, and open **Notificator** in Strapi admin.
 
-- Each notification has its own Dashboard toggle.
-- Settings also contains a global dashboard-toast switch and presentation controls.
-- Use event conditions and throttling to reduce noise.
+- Create rules for application content types.
+- Choose created, updated, published, unpublished, or deleted.
+- Enable **Strapi activity log** for local delivery.
+
+No Notificator account or API key is needed for the local Strapi activity feed.
+Continue with [Strapi Extension Setup](/guides/strapi-extension-setup/).
+
+## Step 2: Verify local delivery
+
+Trigger the event and check the integration's activity view. WordPress dashboard
+events can show a wp-admin toast. Strapi rules with **Strapi activity log** keep
+the newest 100 matches locally and can show a Strapi admin toast.
+
+In WordPress, each notification has a Dashboard toggle, while Settings provides
+global toast controls, conditions, and throttling. In Strapi, enable the local
+activity choice on each rule; the extension checks for new local toast activity
+while the admin panel is open.
 
 ## Step 3: Connect remote delivery (optional)
 
-Create an account and WordPress API key only if you want mobile push or MQTT.
+Create an account and server API key only if you want the Notificator inbox,
+mobile push, email, or MQTT.
 
 - Sign in to the mobile app.
-- Create a `WordPress` (`wordpress_server`) API key.
-- Add and enable that key under **Notificator → Settings → Remote delivery**.
-- Edit the notification and enable **Mobile push**, **MQTT**, or both.
+- Create a `WordPress` (`wordpress_server`) API key. The current WordPress and
+  Strapi integrations both use this signed server key type.
+- In WordPress, add and enable the key under **Notificator → Settings → Remote delivery**.
+- In Strapi, store it as `NOTIFICATOR_API_KEY` and restart the server.
+- Enable the remote channels required by each notification or rule.
 
 Continue with [Create API Key (Mobile)](/guides/mobile-api-key-creation/).
 
 MQTT also requires your own HiveMQ Cloud cluster. Notificator does not provide a
-default broker. Configure the same cluster and topic prefix in WordPress and on
-the device by following [MQTT Broker Setup](/guides/mqtt-broker-setup/).
+default broker. Configure the same cluster and topic prefix in WordPress or
+Strapi and on the device by following [MQTT Broker Setup](/guides/mqtt-broker-setup/).
 
 :::caution[Key type matters]
 Use `wordpress_server` for the WordPress plugin.
+The current Strapi extension also uses `wordpress_server` for its signed server flow.
 Use `public_client` for the `public-notify` endpoint.
 :::
 

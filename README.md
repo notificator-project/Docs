@@ -9,7 +9,8 @@
 [![Node](https://img.shields.io/badge/Node-%3E%3D22.12.0-339933)](https://nodejs.org/)
 
 This repository contains the Notificator Project documentation site.
-It includes end-user guides, developer integration guides, and API reference content.
+It includes end-user guides for WordPress, Strapi, mobile apps, MQTT, and
+connected devices, plus developer integration guides and API reference content.
 
 ## Tech Stack
 

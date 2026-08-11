@@ -37,11 +37,11 @@ Key format:
 - Use separate keys per environment/system.
 - Use the correct key type per endpoint.
 - Revoke compromised keys immediately.
-- A key is needed for mobile push, MQTT, connected devices, or direct API use—not for WordPress dashboard alerts.
+- A key is needed for the Notificator inbox, mobile push, email, MQTT, connected devices, or direct API use—not for WordPress dashboard alerts or the local Strapi activity feed.
 
 ## Endpoint compatibility by key type
 
-- `wordpress_server`: use with `wpnotif-api` (WordPress plugin/server flow)
+- `wordpress_server`: use with `wpnotif-api` (current WordPress and Strapi signed server flow)
 - `public_client`: use with `public-notify` (external/public integrations)
 - `internal_service`: allowed on both endpoints
 
@@ -59,4 +59,5 @@ Also supported:
 ## Next step
 
 - For `wordpress_server` keys: [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
+- For Strapi server keys: [Strapi Extension Setup](/guides/strapi-extension-setup/)
 - For `public_client` keys: [Quick Start](/guides/quick-start/)

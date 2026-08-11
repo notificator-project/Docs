@@ -15,6 +15,7 @@ If you build integrations, start in **Developer Guide**.
 ## What You Can Do Here
 
 - Set up local WordPress dashboard notifications without an account or API key
+- Create local Strapi activity rules or connect Strapi to the Notificator inbox
 - Optionally connect mobile push and MQTT delivery
 - Use the Notificator mobile app on iOS and Android
 - Connect supported open-source Notificator devices
@@ -24,23 +25,37 @@ If you build integrations, start in **Developer Guide**.
 
 ## Choose Your Path
 
-### I am a non-technical user
+### I use WordPress
 
 1. Read [Complete Workflow](/guides/workflow-overview/)
 2. Follow [WordPress Plugin Setup](/guides/wordpress-plugin-setup/)
 3. Optional: [Create an account](/guides/account-creation/) in the mobile app
-4. Optional: [Create an API key](/guides/mobile-api-key-creation/) for mobile push or MQTT
+4. Optional: [Create an API key](/guides/mobile-api-key-creation/) for connected delivery
 
 :::note[No-code outcome]
-At the end of this path, WordPress events can appear in the dashboard without writing code. Connecting the app is optional and enables mobile push and MQTT.
+At the end of this path, WordPress events can appear in wp-admin without writing code. Connecting the app is optional and enables mobile push, email, and MQTT.
+:::
+
+### I administer Strapi
+
+1. Install and configure [Notificator for Strapi](/guides/strapi-extension-setup/)
+2. Create a local activity rule for an application content type
+3. Optional: [Create an API key](/guides/mobile-api-key-creation/) for the Notificator inbox, push, email, or MQTT
+4. Optional: configure [MQTT Broker Setup](/guides/mqtt-broker-setup/) for connected devices
+
+:::note[Server access required]
+The rule builder does not require custom lifecycle code, but installing the
+Strapi extension and configuring secrets requires access to the Strapi project
+and deployment environment.
 :::
 
 ### I am a developer
 
 1. Start with [Quick Start](/guides/quick-start/)
 2. Use [Code Samples](/guides/code-samples/)
-3. For WordPress integrations, read [WordPress Custom Events](/guides/wordpress-custom-events/)
-4. Review [Public Notify API](/reference/public-notify/)
+3. For a managed Strapi integration, read [Strapi Extension Setup](/guides/strapi-extension-setup/)
+4. For WordPress integrations, read [WordPress Custom Events](/guides/wordpress-custom-events/)
+5. Review [Public Notify API](/reference/public-notify/)
 
 :::tip[Developer shortcut]
 If you already have a `public_client` key, jump directly to [Quick Start](/guides/quick-start/).
@@ -50,7 +65,7 @@ If you already have a `public_client` key, jump directly to [Quick Start](/guide
 
 `POST https://api.notificator-project.com`
 
-This endpoint is for custom integrations using a `public_client` key. The WordPress plugin uses the separate Notificator WordPress service automatically; administrators do not need to call that service directly.
+This endpoint is for custom integrations using a `public_client` key. The WordPress plugin and Strapi extension use the separate signed server-delivery service automatically; administrators do not need to call that service directly.
 
 ## Need Full Technical Overview?
 

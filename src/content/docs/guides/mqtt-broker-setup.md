@@ -1,6 +1,6 @@
 ---
 title: MQTT Broker Setup
-description: Connect your own HiveMQ Cloud cluster to WordPress, the mobile app, and a Notificator device.
+description: Connect your own HiveMQ Cloud cluster to WordPress or Strapi, the mobile app, and a Notificator device.
 ---
 
 Notificator does not provide a shared or default MQTT broker. MQTT delivery is
@@ -39,27 +39,27 @@ for current plan details and console instructions.
 In the cluster's **Access Management** area:
 
 1. Open **Authentication → Credentials**.
-2. Create a **Publish Only** credential for the WordPress plugin.
+2. Create a **Publish Only** credential for each WordPress or Strapi publisher.
 3. Create another **Publish Only** credential for mobile device commands.
 4. Create a separate **Publish and Subscribe** credential for the device.
 5. Save the usernames and passwords securely. HiveMQ notes that credential
    changes can take up to one minute to become active.
 
-Separating the credentials prevents the WordPress site and phone from receiving
-device subscriptions, allows one client to be revoked without affecting the
-others, and makes future credential rotation easier.
+Separating the credentials prevents WordPress, Strapi, and the phone from
+receiving device subscriptions, allows one client to be revoked without
+affecting the others, and makes future credential rotation easier.
 
 ## What you need
 
 - A HiveMQ Cloud cluster with secure MQTT and WebSocket access.
-- An enabled Notificator WordPress API key.
+- An enabled Notificator server API key.
 - The cluster hostname, usernames, and passwords.
-- One topic prefix shared by WordPress and every intended device. New
+- One topic prefix shared by the source integration and every intended device. New
   configurations default to `notificator-project`.
 
 Use separate credentials when possible:
 
-- A **publisher** credential for the WordPress plugin.
+- A separate **publisher** credential for each WordPress or Strapi installation.
 - A separate **publisher** credential for mobile device commands.
 - A **device** credential limited to the topics that device must subscribe to
   and publish.
@@ -78,12 +78,34 @@ The plugin connects through secure WebSockets on port `8884` and path `/mqtt`.
 The broker password is encrypted locally, excluded from exports and logs, and
 added to an HTTPS delivery request only in memory.
 
+## Configure the Strapi extension
+
+Add the HiveMQ publisher connection to the Strapi server environment:
+
+```dotenv
+NOTIFICATOR_MQTT_ENABLED=true
+NOTIFICATOR_MQTT_HOST=your-cluster.s1.eu.hivemq.cloud
+NOTIFICATOR_MQTT_USERNAME=your-strapi-publisher
+NOTIFICATOR_MQTT_PASSWORD=replace-with-your-password
+NOTIFICATOR_MQTT_TOPIC_PREFIX=notificator-project
+```
+
+Restart Strapi, open **Notificator**, and confirm the MQTT connection card shows
+the expected hostname and topic prefix. Enable MQTT on the required rules.
+Strapi uses secure WebSockets on port `8884` and path `/mqtt`; enter only the
+HiveMQ hostname in the environment variable.
+
+The extension sends broker details only when an MQTT rule runs. The signed HTTPS
+request uses the values in memory and the Notificator API does not persist them
+in its database. See [Strapi Extension Setup](/guides/strapi-extension-setup/)
+for its complete environment-variable reference.
+
 ## Configure the mobile app
 
 1. Open **Account → Device connection**.
 2. Expand **HiveMQ Cloud**.
 3. Enter the cluster hostname, mobile publisher username, password, and the
-   same topic prefix used by WordPress and the device.
+   same topic prefix used by the source integration and device.
 4. Select **Test connection**.
 5. When the test succeeds, select **Save connection**.
 
@@ -105,7 +127,7 @@ Open the device setup portal and enter:
 - the same HiveMQ Cloud cluster hostname;
 - the secure MQTT port, normally `8883`;
 - the device username and password;
-- exactly the same topic prefix used in WordPress.
+- exactly the same topic prefix used by WordPress or Strapi.
 
 The device stores its credentials in local ESP32 preferences and does not send
 the saved password back to the setup page.
@@ -118,8 +140,8 @@ For a device ID such as `abc123`, the default topic layout is:
 
 ## Enable MQTT for an event
 
-Open a notification in the WordPress plugin and enable its **MQTT** channel.
-Dashboard and mobile-push choices remain independent.
+Open a notification in WordPress or a rule in Strapi and enable its **MQTT**
+channel. Local activity, inbox, push, and email choices remain independent.
 
 MQTT is paused when the broker setting is off or incomplete. Notificator will
 not silently fall back to another broker.
@@ -136,9 +158,9 @@ field, and save.
 Confirm that the broker configuration is complete and at least one Notificator
 API key is enabled.
 
-### WordPress connects but the device receives nothing
+### WordPress or Strapi connects but the device receives nothing
 
-- Confirm WordPress, the mobile app, and the device use the same cluster and
+- Confirm the source integration, mobile app, and device use the same cluster and
   topic prefix.
 - Check the device ID and broker permissions.
 - Make sure the device credential can subscribe to its `messages` and `cmd`
@@ -171,9 +193,9 @@ settings and OTA requests.
 
 ## Current provider support
 
-The current WordPress integration validates HiveMQ Cloud hostnames and its
-standard secure WebSocket endpoint. Support for other MQTT providers is planned,
-but is not part of the current configuration.
+The current WordPress and Strapi integrations validate HiveMQ Cloud hostnames
+and its standard secure WebSocket endpoint. Support for other MQTT providers is
+planned, but is not part of the current configuration.
 
 HiveMQ Cloud is an independent third-party service. Notificator is not affiliated
 with or endorsed by HiveMQ.
