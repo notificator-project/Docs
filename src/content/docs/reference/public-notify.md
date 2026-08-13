@@ -214,16 +214,16 @@ By default (`strictDelivery: false`), MQTT publish failures do **not** fail the 
 | `mqttEnabled` | boolean | Reflects request-level `sendMqtt`. |
 | `timestamp` | string | Server timestamp in ISO-8601 format. |
 
-## Hosted and self-hosted use
+## Hosted service
 
-The official hosted endpoint is the recommended option and needs only a
-`public_client` key. The same API repository can be deployed independently,
-but a fully self-hosted deployment must provide its own compatible Supabase
-data plane, service-role credentials, Expo configuration, and any optional
-email or MQTT provider settings. Never copy the official service-role key into
-a third-party deployment.
+The Public Notify API is operated by the Notificator Project. Integrations only
+need a `public_client` key and always send requests to the canonical endpoint.
+The hosted service owns the protected infrastructure credentials required for
+the official mobile app, including Expo push security.
 
-Node.js projects can use `@notificator-project/api` with either endpoint.
+Do not request, copy, or embed Expo, Supabase, email-provider, or platform MQTT
+credentials in an integration. Node.js projects can use
+`@notificator-project/api`, which is a server-side client for the hosted API.
 
 ## Error Responses
 

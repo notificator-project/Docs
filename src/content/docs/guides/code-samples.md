@@ -36,9 +36,10 @@ await notificator.notify({
 });
 ```
 
-The package uses the hosted endpoint by default. Pass `endpoint` only when
-your team operates a compatible self-hosted Notificator API. Keep API keys on
-the server and out of browser bundles.
+The package sends requests to the hosted Notificator endpoint. Keep API keys on
+the server and out of browser bundles. Infrastructure credentials used for
+mobile push, storage, email, and device delivery remain inside the hosted
+service and are never required by SDK users.
 
 ## JavaScript (fetch)
 
