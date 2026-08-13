@@ -20,6 +20,9 @@ serverless function, queue worker, or backend service:
 npm install @notificator-project/api
 ```
 
+The current package release is `0.1.0`. Its source and release notes are in the
+[Node SDK repository](https://github.com/notificator-project/Node-SDK/releases/tag/v0.1.0).
+
 ```js
 import { NotificatorClient } from "@notificator-project/api";
 

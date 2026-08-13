@@ -9,9 +9,9 @@ delivery channels from the Strapi admin panel instead of writing lifecycle code
 for every model.
 
 :::caution[Preview release]
-The extension is currently an early development preview for Strapi 5. Test it
-before using it for important operational workflows, and do not treat its local
-activity feed as an immutable audit log.
+The current extension release is `0.1.1`, an early development preview for
+Strapi 5. Test it before using it for important operational workflows, and do
+not treat its local activity feed as an immutable audit log.
 :::
 
 ## What the extension watches
@@ -62,6 +62,10 @@ From the Strapi application directory, run:
 ```bash
 npm install @notificator-project/strapi-extension
 ```
+
+The npm `latest` tag currently resolves to `0.1.1`. See the
+[0.1.1 release notes](https://github.com/notificator-project/Strapi-Extension/releases/tag/v0.1.1)
+for the API-key documentation improvements included in this patch.
 
 Add the extension to `config/plugins.ts`:
 
