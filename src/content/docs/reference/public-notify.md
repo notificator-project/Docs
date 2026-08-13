@@ -62,10 +62,13 @@ Minimum payload requirement:
 | `category` | string | No | `info` | Normalized to `info`, `task`, `promo`. |
 | `severity` | string | No | `null` | Normalized to `info`, `warning`, `error`, `critical` or omitted. |
 | `sendPush` | boolean | No | `true` | Controls Expo push send attempt. |
+| `sendEmail` | boolean | No | account preference | Overrides email delivery for this request. |
 | `sendMqtt` | boolean | No | `true` | Controls MQTT publish step. |
 | `strictDelivery` | boolean | No | `false` | When `true`, MQTT failures return `502` (fail-fast). When `false`, MQTT failures are reported as partial success (`200`). |
 | `deviceId` | string | No | all active devices | Sends MQTT only to one device when provided. |
 | `mqttQos` | number | No | `1` | Valid values: `0`, `1`, `2`. |
+| `mqttConnection` | object | No | environment | Use `{ "mode": "custom" }` with `mqttConfig` for request-scoped HiveMQ Cloud credentials. |
+| `mqttConfig` | object | No | none | Validated HiveMQ Cloud WSS credentials. The API uses them for this request and does not persist them. |
 | `payload` | object | No | `{}` | Preferred metadata object merged into downstream `data`. |
 | `data` | object | No | `{}` | Additional metadata object merged into downstream `data`. |
 
@@ -200,7 +203,8 @@ By default (`strictDelivery: false`), MQTT publish failures do **not** fail the 
 | `pushSent` | boolean | At least one push token succeeded. |
 | `pushAttempted` | number | Number of push tokens attempted. |
 | `pushEnabled` | boolean | Reflects request-level `sendPush`. |
-| `emailEnabled` | boolean | Always `false` for this endpoint. |
+| `emailEnabled` | boolean | Whether email delivery was enabled for this request. |
+| `emailSent` | boolean | Whether the configured email provider accepted the alert. |
 | `mqttPublishedCount` | number | Number of successful MQTT publishes completed. |
 | `mqttFailedCount` | number | Number of MQTT publish failures in the request. |
 | `mqttSkipped` | boolean | `true` when no active MQTT targets were available. |
@@ -209,6 +213,17 @@ By default (`strictDelivery: false`), MQTT publish failures do **not** fail the 
 | `warnings` | string[] | Warning codes for partial-success outcomes (for example `mqtt_publish_failed_partial`). |
 | `mqttEnabled` | boolean | Reflects request-level `sendMqtt`. |
 | `timestamp` | string | Server timestamp in ISO-8601 format. |
+
+## Hosted and self-hosted use
+
+The official hosted endpoint is the recommended option and needs only a
+`public_client` key. The same API repository can be deployed independently,
+but a fully self-hosted deployment must provide its own compatible Supabase
+data plane, service-role credentials, Expo configuration, and any optional
+email or MQTT provider settings. Never copy the official service-role key into
+a third-party deployment.
+
+Node.js projects can use `@notificator-project/api` with either endpoint.
 
 ## Error Responses
 

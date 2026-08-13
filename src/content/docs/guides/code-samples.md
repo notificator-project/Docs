@@ -11,6 +11,35 @@ Use a `public_client` API key for the `public-notify` endpoint shown below.
 Use `https://api.notificator-project.com` as the canonical public endpoint.
 :::
 
+## Node.js package
+
+Install the official client when integrating from a Node.js application,
+serverless function, queue worker, or backend service:
+
+```bash
+npm install @notificator-project/api
+```
+
+```js
+import { NotificatorClient } from "@notificator-project/api";
+
+const notificator = new NotificatorClient({
+  apiKey: process.env.NOTIFICATOR_API_KEY,
+});
+
+await notificator.notify({
+  title: "Build Succeeded",
+  body: "CI pipeline completed successfully.",
+  source: "github_actions",
+  category: "info",
+  data: { workflow: "deploy.yml", branch: "main" },
+});
+```
+
+The package uses the hosted endpoint by default. Pass `endpoint` only when
+your team operates a compatible self-hosted Notificator API. Keep API keys on
+the server and out of browser bundles.
+
 ## JavaScript (fetch)
 
 ```js
