@@ -59,8 +59,12 @@ $value = apply_filters('my_plugin_before_export', $value, $context);
 
 ```php
 <?php
-$monitor = UptimeMonitor::get_instance();
-$result = $monitor->send_monitoring_check();
+if ( ! class_exists( 'Notificator_Companion' ) ) {
+    return;
+}
+
+$notificator = Notificator_Companion::get_instance();
+$result       = $notificator->send_monitoring_check();
 
 if ($result) {
     echo 'Monitoring check sent successfully';

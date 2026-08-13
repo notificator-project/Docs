@@ -22,15 +22,22 @@ A template becomes a real notification only after an administrator applies and s
 
 ## Install the sample plugin
 
-[Download the installable Notificator Sample Plugin](https://raw.githubusercontent.com/notificator-project/WordPress-Plugin/main/examples/notificator-sample-plugin.zip).
+The maintained example is available in the
+[WordPress Plugin repository](https://github.com/notificator-project/WordPress-Plugin/tree/main/examples/notificator-sample-plugin).
+It is source code for development and testing, not a remotely hosted plugin
+installer.
 
-1. Download the sample ZIP without extracting it.
-2. In WordPress Admin, open **Plugins → Add New → Upload Plugin**.
-3. Choose `notificator-sample-plugin.zip`, select **Install Now**, and activate it.
-4. Open **Notificator → Developer**. Developer integrations should show one detected event and one third-party template.
+1. Download the repository source or clone it locally.
+2. Copy the complete `examples/notificator-sample-plugin` directory into the
+   test site's `wp-content/plugins/` directory.
+3. In WordPress Admin, open **Plugins** and activate **Notificator – Integration
+   Example**.
+4. Open **Notificator → Developer**. Developer integrations should show one
+   detected event and one third-party template.
 5. Open **Notifications → Templates** and apply **Sample message notification**.
 6. Save it with Dashboard enabled.
-7. Open **Notificator → Sample Integration**, trigger the event, and check Activity.
+7. Open **Notificator → Sample Integration**, trigger the event, and check
+   Activity.
 
 The sample uses a nonce-protected form, provides named `message` and `suffix` arguments, and requires no API key for the Dashboard test.
 

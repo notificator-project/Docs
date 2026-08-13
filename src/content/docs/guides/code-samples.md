@@ -48,7 +48,7 @@ service and are never required by SDK users.
 
 ```js
 const endpoint = "https://api.notificator-project.com";
-const apiKey = process.env.WPNOTIF_API_KEY;
+const apiKey = process.env.NOTIFICATOR_API_KEY;
 
 const payload = {
   title: "Build Succeeded",
@@ -92,7 +92,7 @@ type PublicNotifyPayload = {
 
 export async function sendPublicNotify(payload: PublicNotifyPayload) {
   const endpoint = "https://api.notificator-project.com";
-  const apiKey = process.env.WPNOTIF_API_KEY;
+  const apiKey = process.env.NOTIFICATOR_API_KEY;
 
   const res = await fetch(endpoint, {
     method: "POST",
