@@ -64,6 +64,7 @@ export default defineConfig({
           label: "Developer Guide",
           items: [
             { label: "Quick Start", slug: "guides/quick-start" },
+            { label: "Node.js SDK", slug: "guides/node-sdk" },
             { label: "Code Samples", slug: "guides/code-samples" },
             {
               label: "WordPress Custom Events",

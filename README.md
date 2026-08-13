@@ -10,7 +10,13 @@
 
 This repository contains the Notificator Project documentation site.
 It includes end-user guides for WordPress, Strapi, mobile apps, MQTT, and
-connected devices, plus developer integration guides and API reference content.
+connected devices, plus developer integration guides for the hosted API and
+official Node.js SDK.
+
+Current integration packages:
+
+- `@notificator-project/api@0.1.0` for trusted Node.js server applications
+- `@notificator-project/strapi-extension@0.1.1` for the Strapi 5 preview
 
 ## Tech Stack
 
@@ -76,6 +82,8 @@ description: One-sentence summary shown in previews/search
 - Keep guides action-oriented and step-by-step.
 - Prefer short sections with explicit outcomes.
 - Match public API examples to the production public endpoint: api.notificator-project.com.
+- Keep Node.js examples aligned with the current `@notificator-project/api`
+  package and its fixed hosted endpoint.
 - Keep the WordPress delivery endpoint distinct: wpnotif.notificator-project.com is used by the plugin for optional remote delivery.
 - Keep API key scopes explicit: `wordpress_server` for WordPress,
   `strapi_server` for Strapi, and `public_client` for the public Notify API.
